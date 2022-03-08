@@ -24,11 +24,13 @@ const ProductSchema = new Schema({
         type: String,
         default: ""
     },
-    tags: { type: [String], index: true },
+    tags: { 
+        type: [String],
+        index: true 
+    },
 
 })
 
+const ProductModel = model("Product", ProductSchema)
 
-const ProductModel = model("Products", ProductSchema)
-
-module.exports = ProductModel
+module.exports = { ProductModel, ProductSchema}
