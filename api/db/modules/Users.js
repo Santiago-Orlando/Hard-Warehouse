@@ -23,7 +23,8 @@ const UserSchema = new Schema({
     },
     email: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     password: {
         type: String,
@@ -36,6 +37,14 @@ const UserSchema = new Schema({
     carrito: {
         type: [CarritoItem],
         default: []
+    },
+    admin: {
+        type: Boolean,
+        default: false
+    },
+    direction: {
+        type: String,
+        default: ""
     }
 
 })
