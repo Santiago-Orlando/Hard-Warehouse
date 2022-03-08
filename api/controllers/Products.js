@@ -35,7 +35,7 @@ class ProductsController {
     const { error, response } = await ProductsServices.deleteProduct(id);
 
     if (error) res.status(400).send(response);
-    res.sendStatus(201);
+    res.sendStatus(202);
   }
 
 }
