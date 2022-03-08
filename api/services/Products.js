@@ -1,9 +1,9 @@
-const Products = require("../db/modules/Products");
+const { ProductModel } = require("../db/modules/Products");
 
 class ProductsServices {
   static async newProduct(...data) {
     try {
-      const response = await Products(...data).save();
+      const response = await ProductModel(...data).save();
       return {
         error: false,
         response,
@@ -18,7 +18,7 @@ class ProductsServices {
 
   static async getProducts() {
     try {
-      const response = await Products.find();
+      const response = await ProductModel.find();
       return {
         error: false,
         response,
@@ -33,7 +33,7 @@ class ProductsServices {
 
   static async getProduct(id) {
     try {
-      const response = await Products.findById(id);
+      const response = await ProductModel.findById(id);
       return {
         error: false,
         response,
@@ -49,7 +49,7 @@ class ProductsServices {
   static async updateProduct(id, ...data) {
     try {
       const options = { new: true, runValidators: true };
-      const response = await Products.findByIdAndUpdate(id, ...data, options);
+      const response = await ProductModel.findByIdAndUpdate(id, ...data, options);
       return {
         error: false,
         response,
@@ -64,7 +64,7 @@ class ProductsServices {
 
   static async deleteProduct(id) {
     try {
-      await Products.findByIdAndDelete(id)
+      await ProductModel.findByIdAndDelete(id)
       return {
         error: false,
       };
