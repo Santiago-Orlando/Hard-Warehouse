@@ -7,9 +7,7 @@ class UserServices {
 
         try {
             const item = await ProductModel.findById("6227a03209414d195b8ac42c")
-            const itemCarrito = new CarritoItemModel(item)
-            data.carrito.push({product: itemCarrito, cantidad: 2})
-            console.log(data);
+            data[0].carrito = new CarritoItemModel({product: item, cantidad: 1})
             const response = await UserModel(...data).save()
 
             return {
