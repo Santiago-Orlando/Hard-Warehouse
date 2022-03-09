@@ -1,27 +1,41 @@
-import { createReducer, createAsyncThunk } from "@reduxjs/toolkit"
-// import axios from "axios"
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
+import * as productsService from "../services/userServices"
 
-export const sendLoginRequest = createAsyncThunk("LOGIN", val => {
-//   return axios
-//     .post("/api/user/login", { email: val.email, password: val.password })
-//     .then(r => r.data)
+const userInitialState = {
+  loading: false,
+  data: {},
+  error: "",
+}
+
+export const sendLoginRequest = createAsyncThunk("LOGIN", productsService.userLoginService)
+
+export const sendLogoutRequest = createAsyncThunk("LOGOUT", productsService.userLogoutService)
+
+// export const persistUser = createAsyncThunk("PERSIST", productsService.persistUserService)
+
+const userSlice = createSlice({
+  name: "user",
+  initialState: userInitialState,
+  extraReducers: {
+    [sendLoginRequest.pending]: state => {
+      state.loading = true
+    },
+    [sendLoginRequest.fulfilled]: (state, action) => {
+      state.data = action.payload
+    },
+    [sendLoginRequest.rejected]: (state, action) => {
+      state.error = action.error.message
+    },
+    [sendLogoutRequest.pending]: state => {
+      state.loading = true
+    },
+    [sendLogoutRequest.fulfilled]: (state, action) => {
+      state.data = action.payload
+    },
+    [sendLogoutRequest.rejected]: (state, action) => {
+      state.error = action.error.message
+    },
+  },
 })
 
-export const sendLogoutRequest = createAsyncThunk("LOGOUT", () => {
-//   return axios.post("/api/user/logout").then(r => r.data)
-})
-
-// export const persistUser = createAsyncThunk("PERSIST", () => {
-//   return axios.get("/api/user/me").then(r => r.data)
-// })
-
-const userReducer = createReducer(
-  {},
-  {
-    [sendLoginRequest.fulfilled]: (state, action) => action.payload,
-    [sendLogoutRequest.fulfilled]: (state, action) => action.payload,
-    // [persistUser.fulfilled]: (state, action) => action.payload,
-  }
-)
-
-export default userReducer
+export default userSlice.reducer
