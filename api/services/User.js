@@ -1,5 +1,5 @@
 const { UserModel } = require("../db/modules/Users");
-const { ProductModel } = require("../db/modules/Products");
+
 
 class UserServices {
   static async register(...data) {
