@@ -1,9 +1,10 @@
-const { ProductModel } = require("../db/modules/Products");
+const { UserModel } = require("../db/modules/Users");
 
-class ProductsServices {
-  static async newProduct(...data) {
+
+class UserServices {
+  static async register(...data) {
     try {
-      const response = await ProductModel(...data).save();
+      const response = await UserModel(...data).save();
       return {
         error: false,
         response,
@@ -16,9 +17,14 @@ class ProductsServices {
     }
   }
 
-  static async getProducts() {
+  static async updateUser(id, ...data) {
     try {
-      const response = await ProductModel.find();
+      const options = {
+        new: true,
+        runValidators: true,
+      };
+      const response = await UserModel.findByIdAndUpdate(id, ...data, options);
+
       return {
         error: false,
         response,
@@ -31,9 +37,13 @@ class ProductsServices {
     }
   }
 
-  static async getProduct(id) {
+  static async makeAdmin(id) {
     try {
-      const response = await ProductModel.findById(id);
+      const response = await UserModel.findByIdAndUpdate(
+        id,
+        { admin: true },
+        { new: true }
+      );
       return {
         error: false,
         response,
@@ -46,13 +56,11 @@ class ProductsServices {
     }
   }
 
-  static async updateProduct(id, ...data) {
+  static async deleteUser(id) {
     try {
-      const options = { new: true, runValidators: true };
-      const response = await ProductModel.findByIdAndUpdate(id, ...data, options);
+      await UserModel.findByIdAndDelete(id);
       return {
         error: false,
-        response,
       };
     } catch (error) {
       return {
@@ -62,11 +70,13 @@ class ProductsServices {
     }
   }
 
-  static async deleteProduct(id) {
+  static async getUsers() {
     try {
-      await ProductModel.findByIdAndDelete(id)
+      const response = await UserModel.find();
+
       return {
         error: false,
+        response,
       };
     } catch (error) {
       return {
@@ -77,4 +87,4 @@ class ProductsServices {
   }
 }
 
-module.exports = ProductsServices;
+module.exports = UserServices;
