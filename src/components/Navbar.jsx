@@ -7,7 +7,9 @@ const Navbar = () => {
       <div className="navbarContainer">
         <div className="navbar">
           <div className="logo">
-            <h3>Hard-WareHouse</h3>
+            <Link to='/' className="categorias">
+              <h3>Hard-WareHouse</h3>
+            </Link>
           </div>
           <div className="cartNavContainer">
             <BiSearchAlt2 className="searchIcon" />
