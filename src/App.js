@@ -1,4 +1,5 @@
 import { Routes, Route } from 'react-router'
+import Product from "./components/Product"
 import Navbar from './components/Navbar'
 
 
@@ -17,6 +18,9 @@ function App() {
         <Route path='/notebooks' element={'notebooks'} />
         <Route path='/monitores' element={'Monitores'} />
         <Route path='/perifericos' element={'Perifericos'} />
+
+        <Route path='/producto' element={<Product/>} />
+
 
       </Routes>
 

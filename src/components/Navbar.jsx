@@ -27,6 +27,9 @@ const Navbar = () => {
             <Link className="categorias" to="productos">
               <h5>PRODUCTOS</h5>
             </Link>
+            <Link className="categorias" to="producto">
+              <h5>producto</h5>
+            </Link>
             <Link className="categorias" to="componentes">
               <h5>Componentes</h5>
             </Link>
