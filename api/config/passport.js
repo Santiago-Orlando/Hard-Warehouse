@@ -3,7 +3,7 @@ const LocalStrategy = require("passport-local").Strategy;
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const GithubStrategy = require("passport-github2").Strategy;
 
-const { UserModel } = require("../db/modules/Users");
+const { UserModel } = require("../db/models/Users");
 const { validPassword } = require("../lib/passwordUtils");
 
 //  -------------- LOCAL STRATEGY --------------  //
