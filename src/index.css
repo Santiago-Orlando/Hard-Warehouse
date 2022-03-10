@@ -57,6 +57,10 @@ h1 {
   margin-left: 20px;
 }
 
+.cartNavContainer form {
+  margin-right: 15px;
+}
+
 .cartIcon {
   font-size: 30px;
   margin-left: 20px;
@@ -70,4 +74,171 @@ h1 {
 .cartNavContainer {
   display: flex;
   align-items: center;
+}
+
+.log_reg {
+  text-decoration: none;
+  color: rgb(231, 231, 231);
+  margin: 0 10px;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.log_reg:hover {
+  cursor: pointer;
+  color: #13ffd5;
+}
+
+.hero {
+  width: 100%;
+  height: 500px;
+  background-color: rgb(231, 231, 231);
+}
+.heroContainer {
+  width: 1200px;
+  margin: 0 auto;
+  display: flex;
+}
+
+.heroInfo {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.heroInfo h6,
+h2,
+p {
+  margin: 5px;
+}
+
+.heroInfo h2 {
+  font-size: 40px;
+}
+
+.heroBtn {
+  width: 110px;
+  height: 30px;
+  margin-top: 20px;
+  background-color: #13ffd5;
+  color: #393939;
+  font-weight: 600;
+  border: none;
+}
+
+.heroBtn:hover {
+  cursor: pointer;
+  background-color: #66ffe3;
+}
+
+.heroImage {
+  width: 50%;
+}
+
+.heroImage img {
+  margin-top: -20px;
+  margin-left: -40px;
+  width: 130%;
+}
+
+.overlay {
+  width: 100vw;
+  height: 100vw;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.loginContainer {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  margin: 50px auto;
+  width: 500px;
+  background-color: rgb(231, 231, 231);
+  border: 1px solid rgb(216, 216, 216);
+  
+  border-radius: 5px;
+}
+
+.loginContainer > h2 {
+  font-size: 20px;
+  display: inline-block;
+  margin-bottom: 0;
+  margin-left: 20px;
+  margin-top: 20px;
+}
+
+.loginContainer div {
+  margin: 30px auto;
+  width: 80%;
+  border-top: #393939 solid 2px;
+}
+
+.logForm {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.logInputs {
+  display: inline-block;
+  margin: 5px;
+
+  border: 1px solid rgb(216, 216, 216);
+
+  font-size: 18px;
+
+  height: 30px;
+  padding: 5px 15px;
+}
+
+.logBtn {
+  color: #393939;
+  height: 45px;
+  border: none;
+
+  background-color: #13ffd5;
+  display: inline-block;
+  margin-top: 15px;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.logBtn:hover {
+  cursor: pointer;
+  background-color: #66ffe3;
+}
+
+.logBtnGoogle {
+  color: #ffffff;
+  height: 45px;
+  border: none;
+
+  background-color: #0167ff;
+  display: inline-block;
+  font-weight: 600;
+  font-size: 18px;
+}
+.logBtnGoogle:hover {
+  cursor: pointer;
+  background-color: #2a7fff;
+}
+
+.logBtnGit {
+  color: #ffffff;
+  height: 45px;
+  border: none;
+  margin-top: 15px;
+  background-color: #646464;
+  display: inline-block;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.logBtnGit:hover {
+  cursor: pointer;
+  background-color: #858585;
 }
