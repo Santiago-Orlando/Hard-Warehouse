@@ -1,21 +1,64 @@
 import React, { useEffect, useState } from 'react'
-import { Breadcrumbs, Link, Typography, Container, Grid, CardMedia, Button, IconButton, Divider, Rating } from "@mui/material"
-import { RemoveCircleOutline, AddCircleOutline, Star } from '@mui/icons-material'
-import axios from "axios"
+
+import { useDispatch, useSelector } from "react-redux"
+
+import { Breadcrumbs, Link, Typography, Container, Grid, CardMedia, Button, IconButton, Divider, Rating, MobileStepper } from "@mui/material"
+import { RemoveCircleOutline, AddCircleOutline, Star, KeyboardArrowLeft, KeyboardArrowRight } from '@mui/icons-material'
+import { getSingleProduct } from '../store/products'
+import { Box } from '@mui/system'
+import { useTheme } from '@emotion/react'
+
+
+
+
 
 
 function Product() {
 
+    const dispatch = useDispatch()
+
     const [value, setValue] = useState(0);
-    const [producto, setProducto] = useState({})
+    const [unidadAddCarrito, setUnidadAddCarrito] = useState(1)
+
+    const productos = useSelector(state => state.products)
 
     useEffect(() => {
-        axios
-            .get("https://fakestoreapi.com/products/20")
-            .then(res => res.data)
-            .then(data => setProducto(data))
-    }, []);
+        dispatch(getSingleProduct())
 
+    }, [dispatch])
+
+
+    const addToUnitShoppingCart = (event) => {
+        event.preventDefault()
+        setUnidadAddCarrito(unidadAddCarrito + 1)
+
+    }
+    const removeToUnitShoppingCart = (event) => {
+        event.preventDefault()
+        if (unidadAddCarrito <= 1) return alert("no se pueden extraer mas ")
+        setUnidadAddCarrito(unidadAddCarrito - 1)
+
+    }
+
+
+
+    const steps = [1]
+    const theme = useTheme();
+    const [activeStep, setActiveStep] = useState(0);
+    const maxSteps = steps.length;
+
+    const handleNext = () => {
+        setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    };
+
+    const handleBack = () => {
+        setActiveStep((prevActiveStep) => prevActiveStep - 1);
+    };
+
+
+    //if(productos.loading) return <h1>loading...</h1>
+
+    if (!productos.singleProduct.id) return <h1> no hay datos</h1>
 
     return (
         <Container >
@@ -23,17 +66,15 @@ function Product() {
             <Grid container spacing={8} >
                 <Grid item xs={12}>
                     <Breadcrumbs aria-label="breadcrumb">
-                        <Link underline="hover" color="white" href="/">
-                            Productos
+                        <Link href="/">
+                            <p className='letrasBlancas categoriaBreadcrums'>Productos</p>
                         </Link>
-                        <Link
-                            underline="hover"
-                            color="white"
-                            href="/getting-started/installation/"
-                        >
-                            Categoria
+                        <Link href="/getting-started/installation/">
+                            <p className='letrasBlancas categoriaBreadcrums'>Categorias</p>
                         </Link>
-                        <Typography color="#13FFD5">{producto.category}</Typography>
+                        <Typography >
+                            <p className='letrasVerdes'>{productos.singleProduct.category}</p>
+                        </Typography>
                     </Breadcrumbs>
                 </Grid>
 
@@ -41,28 +82,60 @@ function Product() {
 
                     <Grid container spacing={10} >
                         <Grid item xs={6}>
-                            <CardMedia
-                                component="img"
-                                width='100%'
-                                image={producto.image}
-                                alt="Paella dish"
-                            />
+
+                            <Box sx={{ maxWidth: 400, flexGrow: 1 }}>
+
+                                <CardMedia
+                                    component="img"
+                                    width='100%'
+                                    image={productos.singleProduct.image}
+                                    alt="Paella dish"
+                                />
+                                <MobileStepper
+                                    variant="text"
+                                    steps={maxSteps}
+                                    position="static"
+                                    activeStep={activeStep}
+                                    nextButton={
+                                        <Button
+                                            size="small"
+                                            onClick={handleNext}
+                                            disabled={activeStep === maxSteps - 1}
+                                        >
+                                            {theme.direction === 'rtl' ? (
+                                                <KeyboardArrowLeft />
+                                            ) : (
+                                                <KeyboardArrowRight />
+                                            )}
+                                        </Button>
+                                    }
+                                    backButton={
+                                        <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
+                                            {theme.direction === 'rtl' ? (
+                                                <KeyboardArrowRight />
+                                            ) : (
+                                                <KeyboardArrowLeft />
+                                            )}
+                                        </Button>
+                                    }
+                                />
+                            </Box>
                         </Grid>
                         <Grid item xs={6}>
 
                             <Grid container spacing={4} >
 
                                 <Grid item xs={12}>
-                                    <Typography variant="h4" component="div" gutterBottom>
-                                        {producto.title}
+                                    <Typography variant="h4"  component="div" gutterBottom>
+                                        <p className='letrasVerdes'>{productos.singleProduct.title}</p>
                                     </Typography>
                                 </Grid>
 
                                 <Divider />
 
                                 <Grid item xs={12}>
-                                    <Typography variant="subtitle1" gutterBottom>
-                                        {producto.description}
+                                    <Typography variant="subtitle1"  gutterBottom>
+                                        <p className='letrasBlancas'>{productos.singleProduct.description}</p>
                                     </Typography>
                                 </Grid>
 
@@ -73,24 +146,28 @@ function Product() {
 
 
 
-                                <Grid item xs={4}>
+                                <Grid item xs={6}>
                                     <Typography variant="h6" component="div" gutterBottom>
-                                        <Typography color="white">Precio : {producto.price}</Typography>
+                                        <Typography >
+                                            <p className='letrasBlancas'>Precio : {(productos.singleProduct.price * unidadAddCarrito)}</p>
+                                        </Typography>
 
                                     </Typography>
                                 </Grid>
-                                <Grid item xs={6}>
+                                <Grid item xs={6} >
 
-                                    <IconButton aria-label="delete">
+                                    <IconButton aria-label="add" onClick={addToUnitShoppingCart}>
                                         <AddCircleOutline />
                                     </IconButton>
-                                    1
-                                    <IconButton aria-label="delete">
+                                    {unidadAddCarrito}
+                                    <IconButton aria-label="delete" onClick={removeToUnitShoppingCart}>
                                         <RemoveCircleOutline />
                                     </IconButton>
                                 </Grid>
                                 <Grid item xs={6}>
-                                    <Typography component="legend">Valoraciones Generales</Typography>
+                                    <Typography component="legend">
+                                        <p className='letrasBlancas'>Valoraciones Generales</p>
+                                    </Typography>
 
                                     <Rating
                                         name="text-feedback"
@@ -102,7 +179,9 @@ function Product() {
 
                                 </Grid>
                                 <Grid item xs={6}>
-                                    <Typography component="legend">Tu valoracion el producto</Typography>
+                                    <Typography component="legend">
+                                        <p className='letrasBlancas'>Tu valoracion el producto</p>
+                                    </Typography>
                                     <Rating
                                         name="simple-controlled"
                                         value={value}
@@ -117,7 +196,9 @@ function Product() {
 
                                 <Grid item xs={12}>
 
-                                    <Button variant="contained">Agregar al carrito</Button>
+                                    <button  className='button-addCarrito'>
+                                        <p >Agregar al carrito</p>
+                                    </button>
 
                                 </Grid>
 
