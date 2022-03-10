@@ -27,8 +27,10 @@ const productsSlice = createSlice({
     },
     [getProducts.fulfilled]: (state, action) => {
       state.data = action.payload
+      state.loading = false
     },
     [getProducts.rejected]: (state, action) => {
+      state.loading = false
       state.error = action.error.message
     },
     [getSingleProduct.pending]: state => {
@@ -36,8 +38,10 @@ const productsSlice = createSlice({
     },
     [getSingleProduct.fulfilled]: (state, action) => {
       state.singleProduct = action.payload
+      state.loading = false
     },
     [getSingleProduct.rejected]: (state, action) => {
+      state.loading = false
       state.error = action.error.message
     },
   },
