@@ -1,5 +1,6 @@
 const { Schema, model } = require("mongoose")
 const { ProductSchema } = require("./Products")
+const { genPassword } = require("../../lib/passwordUtils")
 
 const CarritoItem = new Schema({
 
@@ -28,15 +29,17 @@ const UserSchema = new Schema({
     },
     password: {
         type: String,
-        required: true
     },
     salt: {
         type: String,
-        required: true
     },
     carrito: {
         type: [CarritoItem],
         default: []
+    },
+    price: {
+        type: Number,
+        default: null
     },
     admin: {
         type: Boolean,
@@ -47,6 +50,16 @@ const UserSchema = new Schema({
         default: ""
     }
 
+})
+
+UserSchema.pre("save", function() {
+
+    const saltHash = genPassword(this.password);
+    const { salt, hash } = saltHash;
+
+    this.password = hash;
+    this.salt = salt;
+    
 })
 
 const UserModel = model("User", UserSchema)
