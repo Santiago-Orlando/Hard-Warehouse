@@ -1,15 +1,24 @@
 import { Link } from "react-router-dom";
 import { BiCartAlt, BiSearchAlt2 } from "react-icons/bi";
 
-
-
 const Navbar = () => {
+
+  const user = false
+
+  const logOut = (event) => {
+    event.preventDefault();
+    alert('Deslogueo')
+    
+   
+  };
+
+
   return (
     <nav>
       <div className="navbarContainer">
         <div className="navbar">
           <div className="logo">
-            <Link to='/' className="categorias">
+            <Link to="/" className="categorias">
               <h3>Hard-WareHouse</h3>
             </Link>
           </div>
@@ -18,7 +27,22 @@ const Navbar = () => {
             <form>
               <input type="text" />
             </form>
-            <h4>Inicio / Registro</h4>
+            {user ? (
+              <button onClick={logOut} className="logOut">
+                LogOut
+              </button>
+            ) : (
+              <Link className="log_reg" to="login">
+                LogIn
+              </Link>
+            )}
+            {user ? (
+              <h3>{user.name}</h3>
+            ) : (
+              <Link className="log_reg" to="registro">
+                Sign Up
+              </Link>
+            )}
             <BiCartAlt className="cartIcon" />
           </div>
         </div>
