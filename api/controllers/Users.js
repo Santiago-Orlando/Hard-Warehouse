@@ -3,11 +3,6 @@ const { genPassword } = require("../lib/passwordUtils");
 
 class UserController {
   static async register(req, res) {
-    const saltHash = genPassword(req.body.password);
-    const { salt, hash } = saltHash;
-
-    req.body.password = hash;
-    req.body.salt = salt;
 
     const { error, response } = await UserServices.register(req.body);
 
