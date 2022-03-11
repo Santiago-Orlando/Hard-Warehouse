@@ -154,12 +154,12 @@ function Product() {
                                         </Typography>
                                     </Grid>
                                     <Grid item xs={6} >
-                                        <IconButton aria-label="add" onClick={addToUnitShoppingCart}>
-                                            <AddCircleOutline />
-                                        </IconButton>
-                                        {unidadAddCarrito}
-                                        <IconButton aria-label="delete" onClick={removeToUnitShoppingCart}>
+                                        <IconButton sx={{ color:"white"}} aria-label="delete" onClick={removeToUnitShoppingCart}>
                                             <RemoveCircleOutline />
+                                        </IconButton>
+                                        <text className='letrasBlancas'>Cantidad: {unidadAddCarrito}</text>
+                                        <IconButton sx={{ color:"white"}} aria-label="add" onClick={addToUnitShoppingCart}>
+                                            <AddCircleOutline />
                                         </IconButton>
                                     </Grid>
                                     <Grid item xs={6}>
@@ -169,7 +169,7 @@ function Product() {
 
                                         <Rating
                                             name="text-feedback"
-                                            value={3}
+                                            value={productos.singleProduct.rating.rate}
                                             readOnly
                                             precision={0.1}
                                             emptyIcon={<Star style={{ opacity: 0.55 }} fontSize="inherit" />}
