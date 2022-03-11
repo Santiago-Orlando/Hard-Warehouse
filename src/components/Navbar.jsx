@@ -51,19 +51,16 @@ const Navbar = () => {
             <Link className="categorias" to="productos">
               <h5>PRODUCTOS</h5>
             </Link>
-            <Link className="categorias" to="producto">
-              <h5>producto</h5>
-            </Link>
-            <Link className="categorias" to="componentes">
+            <Link className="categorias" to="productos/electronics">
               <h5>Componentes</h5>
             </Link>
-            <Link className="categorias" to="equipos_armados">
+            <Link className="categorias" to="productos/jewelery">
               <h5>Equipos armados</h5>
             </Link>
-            <Link className="categorias" to="notebooks">
+            <Link className="categorias" to="productos/men's clothing">
               <h5>Notebooks</h5>
             </Link>
-            <Link className="categorias" to="monitores">
+            <Link className="categorias" to="productos/women's clothing">
               <h5>Monitores</h5>
             </Link>
             <Link className="categorias" to="perifericos">
