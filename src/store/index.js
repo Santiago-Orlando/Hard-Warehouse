@@ -7,7 +7,7 @@ import productsSlice from "./products"
 const store = configureStore({
     middleware: getDefaultMiddleware => getDefaultMiddleware().concat(logger),
     reducer: {
-      // user: userSlice,
+      user: userSlice,
       products: productsSlice,
     },
   })
