@@ -103,6 +103,15 @@ h1 {
   "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
   sans-serif;}
 
+.marginContainer{
+  margin-top: 70px;
+
+}
+.textoDerecha{
+  text-align: right;
+}
+
+
 .log_reg {
   text-decoration: none;
   color: rgb(231, 231, 231);
@@ -269,3 +278,4 @@ p {
   cursor: pointer;
   background-color: #858585;
 }
+
