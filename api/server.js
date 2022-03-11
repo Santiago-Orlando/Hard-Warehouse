@@ -3,7 +3,9 @@ const cors = require("cors");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
 
-require("dotenv").config();
+const { resolve } = require("path");
+require("dotenv").config({ path: resolve(__dirname, "./.env") });
+
 
 const passport = require("./config/passport");
 const routes = require("./routes");
