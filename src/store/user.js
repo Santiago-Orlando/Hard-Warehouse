@@ -22,8 +22,10 @@ const userSlice = createSlice({
     },
     [sendLoginRequest.fulfilled]: (state, action) => {
       state.data = action.payload
+      state.loading = false
     },
     [sendLoginRequest.rejected]: (state, action) => {
+      state.loading = false
       state.error = action.error.message
     },
     [sendLogoutRequest.pending]: state => {
@@ -31,8 +33,10 @@ const userSlice = createSlice({
     },
     [sendLogoutRequest.fulfilled]: (state, action) => {
       state.data = action.payload
+      state.loading = false
     },
     [sendLogoutRequest.rejected]: (state, action) => {
+      state.loading = false
       state.error = action.error.message
     },
   },

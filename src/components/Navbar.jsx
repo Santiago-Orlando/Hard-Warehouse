@@ -1,15 +1,24 @@
 import { Link } from "react-router-dom";
 import { BiCartAlt, BiSearchAlt2 } from "react-icons/bi";
 
-
-
 const Navbar = () => {
+
+  const user = false
+
+  const logOut = (event) => {
+    event.preventDefault();
+    alert('Deslogueo')
+    
+   
+  };
+
+
   return (
     <nav>
       <div className="navbarContainer">
         <div className="navbar">
           <div className="logo">
-            <Link to='/' className="categorias">
+            <Link to="/" className="categorias">
               <h3>Hard-WareHouse</h3>
             </Link>
           </div>
@@ -18,7 +27,22 @@ const Navbar = () => {
             <form>
               <input type="text" />
             </form>
-            <h4>Inicio / Registro</h4>
+            {user ? (
+              <button onClick={logOut} className="logOut">
+                LogOut
+              </button>
+            ) : (
+              <Link className="log_reg" to="login">
+                LogIn
+              </Link>
+            )}
+            {user ? (
+              <h3>{user.name}</h3>
+            ) : (
+              <Link className="log_reg" to="registro">
+                Sign Up
+              </Link>
+            )}
             <BiCartAlt className="cartIcon" />
           </div>
         </div>
@@ -27,19 +51,16 @@ const Navbar = () => {
             <Link className="categorias" to="productos">
               <h5>PRODUCTOS</h5>
             </Link>
-            <Link className="categorias" to="producto">
-              <h5>producto</h5>
-            </Link>
-            <Link className="categorias" to="componentes">
+            <Link className="categorias" to="productos/electronics">
               <h5>Componentes</h5>
             </Link>
-            <Link className="categorias" to="equipos_armados">
+            <Link className="categorias" to="productos/jewelery">
               <h5>Equipos armados</h5>
             </Link>
-            <Link className="categorias" to="notebooks">
+            <Link className="categorias" to="productos/men's clothing">
               <h5>Notebooks</h5>
             </Link>
-            <Link className="categorias" to="monitores">
+            <Link className="categorias" to="productos/women's clothing">
               <h5>Monitores</h5>
             </Link>
             <Link className="categorias" to="perifericos">

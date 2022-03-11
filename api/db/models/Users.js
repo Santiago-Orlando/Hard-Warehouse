@@ -1,11 +1,10 @@
 const { Schema, model } = require("mongoose")
-const { ProductSchema } = require("./Products")
 const { genPassword } = require("../../lib/passwordUtils")
 
 const CarritoItem = new Schema({
 
     product: {
-        type: ProductSchema,
+        type: String,
         required: true
     },
     cantidad: {
