@@ -115,6 +115,8 @@ h1 {
 .log_reg {
   text-decoration: none;
   color: rgb(231, 231, 231);
+  background: none;
+  border: none;
   margin: 0 10px;
   font-size: 16px;
   font-weight: 400;

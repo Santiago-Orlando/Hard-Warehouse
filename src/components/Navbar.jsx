@@ -1,17 +1,28 @@
 import { Link } from "react-router-dom";
 import { BiCartAlt, BiSearchAlt2 } from "react-icons/bi";
+import { useSelector, useDispatch } from "react-redux";
+import { sendLogoutRequest, persistUser } from '../store/user'
+import { useNavigate } from "react-router";
+import { useEffect } from "react";
+
 
 const Navbar = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate()
+  const user = useSelector((state) => state.user.data);
 
-  const user = false
-
-  const logOut = (event) => {
-    event.preventDefault();
-    alert('Deslogueo')
+  
+  
+  useEffect(() => {
+    dispatch(persistUser())
     
-   
-  };
+  }, [])
 
+  const logOut = () => {
+    dispatch(sendLogoutRequest())
+    alert("Deslogueo exitoso.");
+    navigate('/')
+  };
 
   return (
     <nav>
@@ -27,8 +38,8 @@ const Navbar = () => {
             <form>
               <input type="text" />
             </form>
-            {user ? (
-              <button onClick={logOut} className="logOut">
+            {user.data ? (
+              <button onClick={logOut} className="log_reg">
                 LogOut
               </button>
             ) : (
@@ -36,8 +47,8 @@ const Navbar = () => {
                 LogIn
               </Link>
             )}
-            {user ? (
-              <h3>{user.name}</h3>
+            {user.data ? (
+              <h3>{user.data.fullName}</h3>
             ) : (
               <Link className="log_reg" to="registro">
                 Sign Up

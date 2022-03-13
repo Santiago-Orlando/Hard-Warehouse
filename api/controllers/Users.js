@@ -6,7 +6,7 @@ class UserController {
 
     const { error, response } = await UserServices.register(req.body);
 
-    if (error) res.status(400).send(response);
+    if (error) return res.status(400).send(response);
     res.status(201).send(response);
   }
 
@@ -23,32 +23,32 @@ class UserController {
     const { id } = req.params;
     const { error, response } = await UserServices.updateUser(id, req.body);
 
-    if (error) res.status(400).send(response);
+    if (error) return res.status(400).send(response);
     res.status(201).send(response);
   }
 
   static me(req, res) {
-    if (req.user) res.send(req.user);
-    req.sendStatus(404);
+    if (req.user) return res.send(req.user);
+    res.sendStatus(404);
   }
   static async makeAdmin(req, res) {
     const { id } = req.params;
     const { error, response } = await UserServices.makeAdmin(id);
 
-    if (error) res.status(400).send(response);
+    if (error) return res.status(400).send(response);
     res.status(201).send(response);
   }
   static async deleteUser(req, res) {
     const { id } = req.params;
     const { error, response } = await UserServices.deleteUser(id);
 
-    if (error) res.status(404).send(response);
+    if (error) return res.status(404).send(response);
     res.status(202).send(response);
   }
   static async getUsers(req, res) {
     const { error, response } = await UserServices.getUsers();
 
-    if (error) res.status(404).send(response);
+    if (error) return res.status(404).send(response);
     res.status(200).send(response);
   }
 }
