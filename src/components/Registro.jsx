@@ -1,17 +1,25 @@
 import React from "react";
 import useInput from "../hooks/useInput";
-import axios from "axios";
 import { useNavigate } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
+import { sendRegisterRequest } from "../store/user";
+
 
 const Registro = () => {
+  const user = useSelector((state) => state.user.data)
+  const dispatch = useDispatch()
   const navigate = useNavigate();
-  const nombre = useInput();
-  const apellido = useInput();
+  const fullName = useInput();
   const email = useInput();
   const password = useInput();
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    dispatch(sendRegisterRequest({fullName: fullName.value, email: email.value, password: password.value}))
+    alert('Registro exitoso')
+    navigate("/login")
+    console.log(user)
     /* axios
       .post("./api/register", { nombre:nombre.value, apellido: apellido.value, email: email.value, password: password.value })
       .then((res) => res.data)
@@ -28,27 +36,21 @@ const Registro = () => {
       <form className="logForm" onSubmit={handleSubmit}>
         <input
           className="logInputs"
-          {...nombre}
+          {...fullName}
           type="text"
-          placeholder="Ingresá tu nombre"
-        />
-        <input
-          className="logInputs"
-          {...apellido}
-          type="text"
-          placeholder="Ingresá tu apellido"
+          placeholder="Ingresá tu nombre completo."
         />
         <input
           className="logInputs"
           {...email}
           type="text"
-          placeholder="Ingresá un email"
+          placeholder="Ingresá un email."
         />
         <input
           className="logInputs"
           {...password}
           type="password"
-          placeholder="Definí una contraseña"
+          placeholder="Definí una contraseña."
         />
         <button className="logBtn" type="submit">
           REGISTRARME

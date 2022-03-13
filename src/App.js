@@ -1,15 +1,27 @@
 import { Routes, Route } from "react-router";
+import { useEffect } from "react";
 import Product from "./components/Product";
 import Navbar from "./components/Navbar";
-import Hero from "./components/Hero";
 import Login from "./components/Login";
 import Registro from './components/Registro'
 import Home from "./components/Home"
 import AllProducts from "./components/AllProducts";
+import { persistUser } from "./store/user";
+import { useDispatch } from "react-redux";
 
 import "./App.css";
 
 function App() {
+
+
+  /* const dispatch = useDispatch()
+  
+  useEffect(() => {
+    dispatch(persistUser())
+    
+  }, [])
+ */
+
   return (
     <div>
       <Navbar />

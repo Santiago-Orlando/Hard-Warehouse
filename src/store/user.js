@@ -11,7 +11,9 @@ export const sendLoginRequest = createAsyncThunk("LOGIN", productsService.userLo
 
 export const sendLogoutRequest = createAsyncThunk("LOGOUT", productsService.userLogoutService)
 
-// export const persistUser = createAsyncThunk("PERSIST", productsService.persistUserService)
+export const sendRegisterRequest = createAsyncThunk("REGISTER", productsService.userRegisterService)
+
+export const persistUser = createAsyncThunk("PERSIST", productsService.persistUserService)
 
 const userSlice = createSlice({
   name: "user",
@@ -32,13 +34,35 @@ const userSlice = createSlice({
       state.loading = true
     },
     [sendLogoutRequest.fulfilled]: (state, action) => {
-      state.data = action.payload
+      state.data = {}
       state.loading = false
     },
     [sendLogoutRequest.rejected]: (state, action) => {
       state.loading = false
       state.error = action.error.message
     },
+    [sendRegisterRequest.pending]: state => {
+      state.loading = true
+    },
+    [sendRegisterRequest.fulfilled]: (state, action) => {
+      state.data = action.payload
+      state.loading = false
+    },
+    [sendRegisterRequest.rejected]: (state, action) => {
+      state.loading = false
+      state.error = action.error.message
+    },
+    [persistUser.pending]: state => {
+      state.loading = true
+    },
+    [persistUser.fulfilled]: (state, action) => {
+      state.data = action.payload
+      state.loading = false
+    },
+    [persistUser.rejected]: (state, action) => {
+      state.loading = false
+      state.error = action.error.message
+    }
   },
 })
 
