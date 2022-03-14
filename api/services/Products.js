@@ -1,4 +1,4 @@
-const { ProductModel } = require("../db/models/Products");
+const { ProductModel } = require("../models/Products");
 
 class ProductsServices {
   static async newProduct(...data) {

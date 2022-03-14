@@ -1,5 +1,5 @@
-const { ProductModel } = require('../db/models/Products');
-const { UserModel } = require('../db/models/Users');
+const { ProductModel } = require('../models/Products');
+const { UserModel } = require('../models/Users');
 class CartServices {
   static async newCartItem(id, data) {
     try {
