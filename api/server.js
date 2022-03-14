@@ -9,7 +9,7 @@ require("dotenv").config({ path: resolve(__dirname, "../.env") });
 
 const passport = require("./config/passport");
 const routes = require("./routes");
-const { PORT, SESSION_SECRET, MONGO_URI } = process.env;
+const { SERVER_PORT, SESSION_SECRET, MONGO_URI } = process.env;
 require("./db");
 
 const app = express();
@@ -46,6 +46,6 @@ app.use(passport.session());
 
 app.use("/", routes);
 
-app.listen(PORT, () => {
-  console.log(`Server's listening on Port: ${PORT}`);
+app.listen(SERVER_PORT, () => {
+  console.log(`Server's listening on Port: ${SERVER_PORT}`);
 });
