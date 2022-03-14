@@ -34,10 +34,6 @@ const UserSchema = new Schema({
     type: [CarritoItem],
     default: [],
   },
-  price: {
-    type: Number,
-    default: null,
-  },
   admin: {
     type: Boolean,
     default: false,
