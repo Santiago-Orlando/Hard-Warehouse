@@ -2,9 +2,9 @@ const { UserModel } = require("../models/Users");
 
 
 class UserServices {
-  static async register(...data) {
+  static async register(data) {
     try {
-      const response = await UserModel(...data).save();
+      const response = await UserModel(data).save();
       return {
         error: false,
         response,
@@ -17,13 +17,13 @@ class UserServices {
     }
   }
 
-  static async updateUser(id, ...data) {
+  static async updateUser(id, data) {
     try {
       const options = {
         new: true,
         runValidators: true,
       };
-      const response = await UserModel.findByIdAndUpdate(id, ...data, options);
+      const response = await UserModel.findByIdAndUpdate(id, data, options);
 
       return {
         error: false,
@@ -37,11 +37,11 @@ class UserServices {
     }
   }
 
-  static async makeAdmin(id) {
+  static async updateAdmin(id, adminData) {
     try {
       const response = await UserModel.findByIdAndUpdate(
         id,
-        { admin: true },
+        adminData,
         { new: true }
       );
       return {

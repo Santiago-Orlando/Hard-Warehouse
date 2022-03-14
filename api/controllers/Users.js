@@ -20,6 +20,7 @@ class UserController {
 
   static async updateUser(req, res) {
     const { id } = req.params;
+    req.body.admin = false
     const { error, response } = await UserServices.updateUser(id, req.body);
 
     if (error) return res.status(400).send(response);
@@ -30,9 +31,9 @@ class UserController {
     if (req.user) return res.send(req.user);
     return res.sendStatus(404);
   }
-  static async makeAdmin(req, res) {
+  static async updateAdmin(req, res) {
     const { id } = req.params;
-    const { error, response } = await UserServices.makeAdmin(id);
+    const { error, response } = await UserServices.updateAdmin(id, req.body);
 
     if (error) return res.status(400).send(response);
     return res.status(201).send(response);
