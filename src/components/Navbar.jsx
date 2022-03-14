@@ -54,7 +54,10 @@ const Navbar = () => {
                 Sign Up
               </Link>
             )}
-            <BiCartAlt className="cartIcon" />
+            <Link to="/carrito">
+                <BiCartAlt className="cartIcon" />
+            </Link>
+          
           </div>
         </div>
         <div>
