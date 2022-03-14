@@ -4,7 +4,7 @@ const session = require("express-session");
 const MongoStore = require("connect-mongo");
 
 const { resolve } = require("path");
-require("dotenv").config({ path: resolve(__dirname, "./.env") });
+require("dotenv").config({ path: resolve(__dirname, "../.env") });
 
 
 const passport = require("./config/passport");

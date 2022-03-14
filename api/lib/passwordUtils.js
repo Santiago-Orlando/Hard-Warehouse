@@ -1,21 +1,17 @@
-const { randomBytes, pbkdf2Sync } = require('crypto');
+const { hash, genSalt } = require("bcrypt");
 
-// Link a la documentación   https://www.npmjs.com/package/crypto-js  //
+const genHash = async (password) => {
+  const salt = await genSalt(16);
+  const userHash = await hash(password, salt);
 
+  return {
+    salt: salt,
+    hash: userHash,
+  };
+};
 
-function genPassword(password) {
-    const salt = randomBytes(32).toString('hex');
-    const genHash = pbkdf2Sync(password, salt, 10000, 64, 'sha512').toString('hex');
-    
-    return {
-      salt: salt,
-      hash: genHash
-    };
-}
+const verifyHash = async (password, userHash, salt) => {
+  return userHash === (await hash(password, salt));
+};
 
-function validPassword(password, hash, salt) {
-    const hashVerify = pbkdf2Sync(password, salt, 10000, 64, 'sha512').toString('hex');
-    return hash === hashVerify;
-}
-
-module.exports = { validPassword, genPassword };
+module.exports = { genHash, verifyHash };
