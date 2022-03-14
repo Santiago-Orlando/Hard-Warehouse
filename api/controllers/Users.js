@@ -33,6 +33,9 @@ class UserController {
   }
   static async updateAdmin(req, res) {
     const { id } = req.params;
+
+    if(req.body.admin === false && req.user.id === id) return res.sendStatus(401) // El mismo usuario no puede rebocarse permisos
+
     const { error, response } = await UserServices.updateAdmin(id, req.body);
 
     if (error) return res.status(400).send(response);
