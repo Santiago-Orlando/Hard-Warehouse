@@ -38,7 +38,7 @@ function App() {
         <Route path="/producto/:id" element={<Product />} />
       </Routes>
 
-      <h1> Proyecto E-Commerce</h1>
+      <h1></h1>
     </div>
   )
 }

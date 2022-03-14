@@ -2,28 +2,28 @@ import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
 import { Container, Grid, Typography } from "@mui/material"
-import { getCategoryProducts } from "../store/products"
+import { getSaleProducts } from "../store/products"
 import CardProduct from "./CardProduct"
 
-const Novedades = () => {
-  const novedades = "jewelery"
-  const products = useSelector(state => state.products.data)
+const Ofertas = () => {
   const dispatch = useDispatch()
+  const ofertas = useSelector(state => state.products.sales)
 
   useEffect(() => {
-    dispatch(getCategoryProducts(novedades))
-  }, [novedades])
+    dispatch(getSaleProducts())
+  }, [])
 
-  if (products.loading) return (
-    <Typography
-    variant="subtitle1"
-    sx={{ mx: "auto", width: 200, marginBottom: "25px" }}
-  >
-    <h3>Loading...</h3>
-  </Typography>
-  )
+  if (ofertas.loading)
+    return (
+      <Typography
+        variant="subtitle1"
+        sx={{ mx: "auto", width: 200, marginBottom: "25px" }}
+      >
+        <h3>Loading...</h3>
+      </Typography>
+    )
 
-  if (!products[0])
+  if (!ofertas[0])
     return (
       <Typography
         variant="subtitle1"
@@ -41,11 +41,11 @@ const Novedades = () => {
             variant="subtitle1"
             sx={{ mx: "auto", width: 200, marginBottom: "25px" }}
           >
-            <p className="letrasBlancas">NOVEDADES</p>
+            <p className="letrasBlancas">OFERTAS</p>
           </Typography>
 
           <Grid container spacing={0}>
-            {products.map(product => (
+            {ofertas.map(product => (
               <Grid key={product.id} item xs={3}>
                 <Link to={`/producto/${product.id}`}>
                   <CardProduct
@@ -64,4 +64,4 @@ const Novedades = () => {
   )
 }
 
-export default Novedades
+export default Ofertas
