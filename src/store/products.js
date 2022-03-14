@@ -6,6 +6,7 @@ const productsInitialState = {
   data: [],
   error: "",
   singleProduct: {},
+  sales: [],
 }
 
 export const getProducts = createAsyncThunk(
@@ -21,6 +22,11 @@ export const getSingleProduct = createAsyncThunk(
 export const getCategoryProducts = createAsyncThunk(
   "GET_CATEGORY_PRODUCTS",
   productsService.categoriesProductService
+)
+
+export const getSaleProducts = createAsyncThunk(
+  "GET_SALE_PRODUCTS",
+  productsService.saleProductsService
 )
 
 const productsSlice = createSlice({
@@ -57,6 +63,17 @@ const productsSlice = createSlice({
       state.loading = false
     },
     [getCategoryProducts.rejected]: (state, action) => {
+      state.loading = false
+      state.error = action.error.message
+    },
+    [getSaleProducts.pending]: state => {
+      state.loading = true
+    },
+    [getSaleProducts.fulfilled]: (state, action) => {
+      state.sales = action.payload
+      state.loading = false
+    },
+    [getSaleProducts.rejected]: (state, action) => {
       state.loading = false
       state.error = action.error.message
     },

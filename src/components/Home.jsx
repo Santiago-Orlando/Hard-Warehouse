@@ -1,5 +1,6 @@
 import Hero from "./Hero"
 import Novedades from "./Novedades"
+import Ofertas from "./Ofertas"
 
 const Home = () => {
 
@@ -7,6 +8,7 @@ const Home = () => {
     <>
     <Hero/>
     <Novedades/>
+    <Ofertas />
     </>
   )
 }
