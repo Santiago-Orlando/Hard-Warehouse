@@ -1,16 +1,16 @@
-const ProductsServices = require("./Products");
+const { ProductModel } = require("../models/Products");
 
 class SearchServices {
-  static async search(tag) {
-    console.log("DATA", tag);
+  static async search(page, tagList) {
     try {
-      const { response } = await ProductsServices.getProducts();
-      const list = response.filter((product) => {
-        if (product.tags.includes(tag)) return product;
-      });
+      const response = await ProductModel.paginate(
+        { tags: { $all: tagList } },
+        { page, limit: 12 }
+      );
+
       return {
         error: false,
-        response: list,
+        response,
       };
     } catch (error) {
       return {

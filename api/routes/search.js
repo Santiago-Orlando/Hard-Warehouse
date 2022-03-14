@@ -1,7 +1,7 @@
 const router = require("express").Router()
 const SearchControllers = require("../controllers/Search")
 
-router.get("/:tag" , SearchControllers.search);
+router.get("/" , SearchControllers.search);
 
 module.exports = router;
 

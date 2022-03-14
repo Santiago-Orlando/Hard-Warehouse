@@ -16,9 +16,13 @@ class ProductsServices {
     }
   }
 
-  static async getProducts() {
+  static async getProducts(page, filters) {
     try {
-      const response = await ProductModel.find();
+      const response = await ProductModel.paginate(filters, {
+        page: page,
+        limit: 12,
+      });
+
       return {
         error: false,
         response,
@@ -46,10 +50,10 @@ class ProductsServices {
     }
   }
 
-  static async updateProduct(id, ...data) {
+  static async updateProduct(id, data) {
     try {
       const options = { new: true, runValidators: true };
-      const response = await ProductModel.findByIdAndUpdate(id, ...data, options);
+      const response = await ProductModel.findByIdAndUpdate(id, data, options);
       return {
         error: false,
         response,
@@ -64,7 +68,7 @@ class ProductsServices {
 
   static async deleteProduct(id) {
     try {
-      await ProductModel.findByIdAndDelete(id)
+      await ProductModel.findByIdAndDelete(id);
       return {
         error: false,
       };
