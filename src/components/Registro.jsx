@@ -29,7 +29,7 @@ const Registro = () => {
     alert("Registro exitoso")
     navigate("/login")
     console.log(user)
-
+    }
   return (
     <div className="loginContainer">
       <h2>Registrarme</h2>
