@@ -1,9 +1,9 @@
 const { ProductModel } = require("../models/Products");
 
 class ProductsServices {
-  static async newProduct(...data) {
+  static async newProduct(data) {
     try {
-      const response = await ProductModel(...data).save();
+      const response = await ProductModel(data).save();
       return {
         error: false,
         response,

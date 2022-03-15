@@ -40,7 +40,7 @@
     "client": "react-scripts start",
     "server": "nodemon api/server.js",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "jest --verbose",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -63,6 +63,7 @@
   },
   "devDependencies": {
     "concurrently": "^7.0.0",
+    "jest": "^27.5.1",
     "nodemon": "^2.0.15"
   }
 }
