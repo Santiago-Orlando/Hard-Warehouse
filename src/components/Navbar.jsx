@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { BiCartAlt, BiSearchAlt2 } from "react-icons/bi";
 import { useSelector, useDispatch } from "react-redux";
 import { sendLogoutRequest, persistUser } from '../store/user'
-import {searchProducts } from '../store/products'
+import { searchProducts } from '../store/products'
 import { useNavigate } from "react-router";
 import { useEffect } from "react";
 import useInput from "../hooks/useInput";
@@ -30,7 +30,7 @@ const Navbar = () => {
 
   const handleSearch = (event) => {
     event.preventDefault()
-    dispatch(searchProducts(search.value))
+    dispatch(searchProducts({title: search.value}))
     navigate('/search')
   }
 

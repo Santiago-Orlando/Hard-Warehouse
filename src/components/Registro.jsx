@@ -20,14 +20,7 @@ const Registro = () => {
     alert('Registro exitoso')
     navigate("/login")
     console.log(user)
-    /* axios
-      .post("./api/register", { nombre:nombre.value, apellido: apellido.value, email: email.value, password: password.value })
-      .then((res) => res.data)
-      .then((newUser) => {
-        alert("Registro exitoso");
-        navigate("/login");
-        console.log(newUser);
-      }); */
+    
   };
 
   return (

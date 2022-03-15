@@ -29,7 +29,7 @@ class ProductsController {
 
   static async searchByTitle(req, res) {
     const { page } = req.query || 1
-    const { title } = req.body
+    const { title } = req.params
     const { error, response } = await ProductsServices.searchByTitle(page, title)
 
     if (error) return res.status(400).send(response);

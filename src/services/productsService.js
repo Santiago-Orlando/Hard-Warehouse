@@ -25,15 +25,14 @@ export const searchProductsByTag = async (tag) => {
   return searchedProducts.data
 }
 
-export const searchProductsByTitle = async (tag) => {
+export const searchProductsByTitle = async ({title}) => {
   const searchedProducts =  await axios({
     method: "GET",
-    data: { tags: tag },
     withCredentials: true,
-    url: "http://localhost:3001/products/showProducts",
+    url: `http://localhost:3001/products/searchByTitle/${title}`,
   })
-  console.log ('RESULTADO BACK', searchedProducts.data)
-  return searchedProducts.data
+  console.log ('RESULTADO BACK', searchedProducts.data.docs)
+  return searchedProducts.data.docs
 }
 
 
