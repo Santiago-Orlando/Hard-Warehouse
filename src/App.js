@@ -10,18 +10,12 @@ import  ShoppingCart  from "./components/ShoppingCart"
 import { persistUser } from "./store/user";
 import { useDispatch } from "react-redux";
 
-import "./App.css";
+
 
 function App() {
 
 
-  /* const dispatch = useDispatch()
-  
-  useEffect(() => {
-    dispatch(persistUser())
-    
-  }, [])
- */
+ 
 
   return (
     <div>
@@ -35,10 +29,11 @@ function App() {
         <Route path="/perifericos" element={"Perifericos"} />
         <Route path="/producto/:id" element={<Product />} />
         <Route path="/carrito" element={<ShoppingCart />} />
+        <Route path="/search" element={<AllProducts/>} />
 
       </Routes>
 
-      <h1></h1>
+      
     </div>
   )
 }

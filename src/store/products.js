@@ -7,6 +7,7 @@ const productsInitialState = {
   error: "",
   singleProduct: {},
   sales: [],
+  search: []
 }
 
 export const getProducts = createAsyncThunk(
@@ -86,7 +87,7 @@ const productsSlice = createSlice({
       state.loading = true
     },
     [searchProducts.fulfilled]: (state, action) => {
-      state.data = action.payload
+      state.search = action.payload
       state.loading = false
     },
     [searchProducts.rejected]: (state, action) => {
