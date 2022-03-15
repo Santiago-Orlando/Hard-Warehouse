@@ -54,6 +54,14 @@ class ProductsController {
     if (error) return res.status(400).send(response);
     return res.sendStatus(202);
   }
+
+  static async reviewProduct(req, res) {
+    const {id} = req.params
+    const { error, response } = await ProductsServices.reviewProduct(id, req.body);
+
+    if (error) return res.status(400).send(response);
+    return res.status(201).send(response);
+  }
 }
 
 module.exports = ProductsController;
