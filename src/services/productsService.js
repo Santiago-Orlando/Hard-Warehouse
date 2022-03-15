@@ -19,3 +19,17 @@ export const saleProductsService = async () => {
   const saleProducts = await axios.get(`https://fakestoreapi.com/products/category/men's clothing`)
   return saleProducts.data
 }
+
+export const postProductService = async (product) => {
+  const postProduct = await axios.post(`http://localhost:3001/products/add`, {
+    title: product.title,
+    author: product.author,
+    category: product.category,
+    stock: product.stock,
+    price: product.price,
+    image: product.image,
+    details: product.details,
+    tags: product.tags
+  })
+  return postProduct.data
+}

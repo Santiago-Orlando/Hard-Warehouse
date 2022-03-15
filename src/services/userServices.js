@@ -11,10 +11,10 @@ export const userLoginService = async ({ email, password }) => {
   return user;
 };
 
-export const userRegisterService = async ({ fullName, email, password }) => {
+export const userRegisterService = async ({ fullName, email, password, admin }) => {
   const user = await axios({
     method: "POST",
-    data: { fullName, email, password },
+    data: { fullName, email, password, admin },
     withCredentials: true,
     url: "http://localhost:3001/users/register",
   });
