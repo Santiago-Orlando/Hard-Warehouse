@@ -50,6 +50,26 @@ class ProductsServices {
     }
   }
 
+  static async searchByTitle(page, title) {
+    try {
+      const response = await ProductModel.paginate(
+        {
+          title: { $regex: title },
+        },
+        { page: page, limit: 12 }
+      );
+      return {
+        error: false,
+        response,
+      };
+    } catch (error) {
+      return {
+        error: true,
+        response: error,
+      };
+    }
+  }
+
   static async updateProduct(id, data) {
     try {
       const options = { new: true, runValidators: true };
