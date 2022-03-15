@@ -4,9 +4,15 @@ import { Link } from "react-router-dom"
 import { Container, Grid, Typography } from "@mui/material"
 import { getCategoryProducts } from "../store/products"
 import CardProduct from "./CardProduct"
+import Carousel from 'react-elastic-carousel'
 
 const Novedades = () => {
-  const novedades = "jewelery"
+  const breakPoints = [
+    {width: 500, itemsToShow: 1},
+    {width: 768, itemsToShow: 4},
+  
+  ]
+  const novedades = "electronics"
   const products = useSelector(state => state.products.data)
   const dispatch = useDispatch()
 
@@ -40,23 +46,27 @@ const Novedades = () => {
           <Typography
             variant="subtitle1"
             sx={{ mx: "auto", width: 200, marginBottom: "25px" }}
-          >
+            >
             <p className="letrasBlancas">NOVEDADES</p>
           </Typography>
 
           <Grid container spacing={0}>
+            <Carousel breakPoints = {breakPoints}>
+  
+  
             {products.map(product => (
-              <Grid key={product.id} item xs={3}>
+              <Grid key={product.id} item >
                 <Link to={`/producto/${product.id}`}>
                   <CardProduct
                     image={product.image}
                     title={product.title}
                     price={product.price}
                     rate={product.rating.rate}
-                  />
+                    />
                 </Link>
               </Grid>
             ))}
+            </Carousel>
           </Grid>
         </Container>
       </div>

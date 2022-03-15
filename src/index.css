@@ -62,8 +62,9 @@ h1 {
 }
 
 .cartIcon {
-  font-size: 30px;
-  margin-left: 20px;
+  color: rgb(231, 231, 231);
+  font-size: 40px;
+  margin-left: 15px;
 }
 .searchIcon {
   margin-right: 5px;

@@ -4,8 +4,14 @@ import { Link } from "react-router-dom"
 import { Container, Grid, Typography } from "@mui/material"
 import { getSaleProducts } from "../store/products"
 import CardProduct from "./CardProduct"
+import Carousel from 'react-elastic-carousel'
 
 const Ofertas = () => {
+  const breakPoints = [
+    {width: 500, itemsToShow: 1},
+    {width: 768, itemsToShow: 4},
+  
+  ]
   const dispatch = useDispatch()
   const ofertas = useSelector(state => state.products.sales)
 
@@ -45,8 +51,9 @@ const Ofertas = () => {
           </Typography>
 
           <Grid container spacing={0}>
+          <Carousel breakPoints = {breakPoints}>
             {ofertas.map(product => (
-              <Grid key={product.id} item xs={3}>
+              <Grid key={product.id} item >
                 <Link to={`/producto/${product.id}`}>
                   <CardProduct
                     image={product.image}
@@ -57,6 +64,7 @@ const Ofertas = () => {
                 </Link>
               </Grid>
             ))}
+            </Carousel>
           </Grid>
         </Container>
       </div>

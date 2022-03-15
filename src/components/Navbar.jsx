@@ -1,41 +1,49 @@
+import * as React from "react";
 import { Link } from "react-router-dom";
 import { BiCartAlt, BiSearchAlt2 } from "react-icons/bi";
 import { useSelector, useDispatch } from "react-redux";
-import { sendLogoutRequest, persistUser } from '../store/user'
-import { searchProducts } from '../store/products'
+import { sendLogoutRequest, persistUser } from "../store/user";
+import { searchProducts } from "../store/products";
 import { useNavigate } from "react-router";
 import { useEffect } from "react";
 import useInput from "../hooks/useInput";
+import Badge from "@mui/material/Badge";
+import { styled } from "@mui/material/styles";
+import IconButton from "@mui/material/IconButton";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
 
 const Navbar = () => {
-  const search = useInput()
+  
+  const StyledBadge = styled(Badge)(({ theme }) => ({
+    "& .MuiBadge-badge": {
+      right: -3,
+      top: 13,
+      border: `2px solid ${theme.palette.background.paper}`,
+      padding: "0 4px",
+    },
+  }));
+  const search = useInput();
   const dispatch = useDispatch();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const user = useSelector((state) => state.user.data);
-  const products = useSelector(state => state.products.data)
+  const products = useSelector((state) => state.products.data);
 
-  
-  
   useEffect(() => {
-    dispatch(persistUser())
-    
-  }, [])
+    dispatch(persistUser());
+  }, []);
 
   const logOut = () => {
-    dispatch(sendLogoutRequest())
+    dispatch(sendLogoutRequest());
     alert("Deslogueo exitoso.");
-    navigate('/')
+    navigate("/");
   };
 
   const handleSearch = (event) => {
-    event.preventDefault()
-    dispatch(searchProducts({title: search.value}))
-    navigate('/search')
-  }
-
-  console.log('BUSQUEDA' , products )
-  console.log('Search ', search.value)
+    event.preventDefault();
+    dispatch(searchProducts({ title: search.value }));
+    navigate("/search");
+  };
 
   return (
     <nav>
@@ -49,9 +57,7 @@ const Navbar = () => {
           <div className="cartNavContainer">
             <BiSearchAlt2 className="searchIcon" />
             <form onSubmit={handleSearch}>
-              <input 
-              {...search}
-              type="text" />
+              <input {...search} type="text" />
             </form>
             {user.data ? (
               <button onClick={logOut} className="log_reg">
@@ -70,9 +76,12 @@ const Navbar = () => {
               </Link>
             )}
             <Link to="/carrito">
-                <BiCartAlt className="cartIcon" />
+              <IconButton aria-label="cart">
+                <StyledBadge badgeContent={4} color="primary">
+                  <ShoppingCartIcon className="cartIcon" />
+                </StyledBadge>
+              </IconButton>
             </Link>
-          
           </div>
         </div>
         <div>
