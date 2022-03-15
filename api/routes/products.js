@@ -6,6 +6,7 @@ router.post("/add", isAdmin, ProductsController.newProduct)
 router.post("/update/:id", isAdmin, ProductsController.updateProduct)
 router.get("/showProducts", ProductsController.getProducts)
 router.get("/showOne/:id", ProductsController.getProduct)
+router.get("/searchByTitle", ProductsController.searchByTitle)
 router.delete("/delete/:id", isAdmin, ProductsController.deleteProduct)
 
 
