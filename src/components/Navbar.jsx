@@ -2,14 +2,18 @@ import { Link } from "react-router-dom";
 import { BiCartAlt, BiSearchAlt2 } from "react-icons/bi";
 import { useSelector, useDispatch } from "react-redux";
 import { sendLogoutRequest, persistUser } from '../store/user'
+import {searchProducts } from '../store/products'
 import { useNavigate } from "react-router";
 import { useEffect } from "react";
+import useInput from "../hooks/useInput";
 
 
 const Navbar = () => {
+  const search = useInput()
   const dispatch = useDispatch();
   const navigate = useNavigate()
   const user = useSelector((state) => state.user.data);
+  const products = useSelector(state => state.products.data)
 
   
   
@@ -24,6 +28,15 @@ const Navbar = () => {
     navigate('/')
   };
 
+  const handleSearch = (event) => {
+    event.preventDefault()
+    dispatch(searchProducts(search.value))
+    navigate('/search')
+  }
+
+  console.log('BUSQUEDA' , products )
+  console.log('Search ', search.value)
+
   return (
     <nav>
       <div className="navbarContainer">
@@ -35,8 +48,10 @@ const Navbar = () => {
           </div>
           <div className="cartNavContainer">
             <BiSearchAlt2 className="searchIcon" />
-            <form>
-              <input type="text" />
+            <form onSubmit={handleSearch}>
+              <input 
+              {...search}
+              type="text" />
             </form>
             {user.data ? (
               <button onClick={logOut} className="log_reg">

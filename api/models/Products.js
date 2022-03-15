@@ -9,7 +9,7 @@ const ProductSchema = new Schema({
   },
   author: {
     type: String,
-    required: true,
+    required: false,
   },
   category: {
     type: String,

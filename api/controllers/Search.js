@@ -7,7 +7,7 @@ class SearchControllers {
     const { error, response } = await SearchServices.search(page, tags);
 
     if (error) return res.status(400).send(response);
-    return res.status(201).send(response);
+    return res.status(200).send(response);
   }
 }
 

@@ -32,9 +32,6 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/productos" element={<AllProducts/>} />
         <Route path="/productos/:category" element={<AllProducts/>} />
-        <Route path="/equipos_armados" element={"Equipos armados"} />
-        <Route path="/notebooks" element={"notebooks"} />
-        <Route path="/monitores" element={"Monitores"} />
         <Route path="/perifericos" element={"Perifericos"} />
         <Route path="/producto/:id" element={<Product />} />
         <Route path="/carrito" element={<ShoppingCart />} />
