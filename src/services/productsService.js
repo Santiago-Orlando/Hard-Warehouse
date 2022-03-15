@@ -21,7 +21,9 @@ export const saleProductsService = async () => {
 }
 
 export const postProductService = async (product) => {
-  const postProduct = await axios.post(`http://localhost:3001/products/add`, {
+  const postProduct = await axios({
+    method: "POST",
+    data: {
     title: product.title,
     author: product.author,
     category: product.category,
@@ -30,6 +32,9 @@ export const postProductService = async (product) => {
     image: product.image,
     details: product.details,
     tags: product.tags
+    },
+    withCredentials: true,
+    url: `http://localhost:3001/products/add`
   })
   return postProduct.data
 }
