@@ -26,6 +26,16 @@ class ProductsController {
     if (error) return res.status(400).send(response);
     return res.send(response);
   }
+
+  static async searchByTitle(req, res) {
+    const { page } = req.query || 1
+    const { title } = req.params
+    const { error, response } = await ProductsServices.searchByTitle(page, title)
+
+    if (error) return res.status(400).send(response);
+    return res.send(response);
+  }
+
   static async updateProduct(req, res) {
     const { id } = req.params;
     const { error, response } = await ProductsServices.updateProduct(

@@ -1,9 +1,9 @@
 const { ProductModel } = require("../models/Products");
 
 class ProductsServices {
-  static async newProduct(...data) {
+  static async newProduct(data) {
     try {
-      const response = await ProductModel(...data).save();
+      const response = await ProductModel(data).save();
       return {
         error: false,
         response,
@@ -38,6 +38,26 @@ class ProductsServices {
   static async getProduct(id) {
     try {
       const response = await ProductModel.findById(id);
+      return {
+        error: false,
+        response,
+      };
+    } catch (error) {
+      return {
+        error: true,
+        response: error,
+      };
+    }
+  }
+
+  static async searchByTitle(page, title) {
+    try {
+      const response = await ProductModel.paginate(
+        {
+          title: { $regex: title },
+        },
+        { page: page, limit: 12 }
+      );
       return {
         error: false,
         response,

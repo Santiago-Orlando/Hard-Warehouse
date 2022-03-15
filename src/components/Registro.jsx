@@ -29,16 +29,7 @@ const Registro = () => {
     alert("Registro exitoso")
     navigate("/login")
     console.log(user)
-    /* axios
-      .post("./api/register", { nombre:nombre.value, apellido: apellido.value, email: email.value, password: password.value })
-      .then((res) => res.data)
-      .then((newUser) => {
-        alert("Registro exitoso");
-        navigate("/login");
-        console.log(newUser);
-      }); */
-  }
-  // console.log("CHECK", check.value)
+
   return (
     <div className="loginContainer">
       <h2>Registrarme</h2>

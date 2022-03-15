@@ -33,3 +33,18 @@ export const postProductService = async (product) => {
   })
   return postProduct.data
 }
+
+export const searchProductsByTag = async (tag) => {
+  const searchedProducts =  await axios.get(`http://localhost:3001/search/?q=tags=${tag}`)
+  return searchedProducts.data
+}
+
+export const searchProductsByTitle = async ({title}) => {
+  const searchedProducts =  await axios({
+    method: "GET",
+    withCredentials: true,
+    url: `http://localhost:3001/products/searchByTitle/${title}`,
+  })
+  console.log ('RESULTADO BACK', searchedProducts.data.docs)
+  return searchedProducts.data.docs
+}
