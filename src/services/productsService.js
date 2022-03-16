@@ -6,7 +6,11 @@ export const allProductsService = async () => {
 }
 
 export const singleProductService = async id => {
-  const singleProduct = await axios.get(`https://fakestoreapi.com/products/${id}`)
+  const singleProduct = await axios({
+    method: 'GET',
+    withCredentials: true,
+    url: `http://localhost:3001/products/showOne/${id}`
+  })
   return singleProduct.data
 }
 

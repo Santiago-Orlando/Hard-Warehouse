@@ -8,10 +8,11 @@ class CartController {
     return res.status(201).send(response);
   }
   static async removeCartItem(req, res) {
-    const { id } = req.params;
-    const { error, response } = await CartServices.removeCartItem(id, req.body);
+    const { id, productId } = req.params;
+    console.log(id, productId)
+    const { error, response } = await CartServices.removeCartItem(id, productId);
     if (error) return res.status(400).send(response);
-    return res.status(201).send(response);
+    return res.status(200).send(response)
   }
   static async modifyQuantity(req, res) {
     const { id } = req.params;
