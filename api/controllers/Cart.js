@@ -19,6 +19,12 @@ class CartController {
     if (error) return res.status(400).send(response);
     return res.status(201).send(response);
   }
+  static async confirmBuy (req , res) {
+    const { id } = req.params;
+    const { error , response } = await CartServices.confirmBuy(id);
+    if (error) return res.status(400).send(response);
+    return res.status(201).send(response);
+  }
 }
 
 module.exports = CartController;
