@@ -78,7 +78,7 @@ const Navbar = () => {
             )}
             <Link to="/carrito">
               <IconButton aria-label="cart">
-                <StyledBadge badgeContent={user.data.carrito.length} color="primary">
+                <StyledBadge badgeContent={user.data ? user.data.carrito.length : 0} color="primary">
                   <ShoppingCartIcon className="cartIcon" />
                 </StyledBadge>
               </IconButton>
