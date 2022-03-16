@@ -30,7 +30,7 @@ const Admin = () => {
   const navigate = useNavigate()
 
   const handleSubmit = e => {
-    // e.preventDefault()
+    e.preventDefault()
     dispatch(
       postProduct({
         title: title.value,

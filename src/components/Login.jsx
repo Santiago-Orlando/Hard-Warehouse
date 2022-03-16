@@ -12,7 +12,7 @@ const Login = () => {
   const email = useInput();
   const password = useInput();
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
 
     dispatch(
