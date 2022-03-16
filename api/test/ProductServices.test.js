@@ -75,7 +75,7 @@ describe("Se espera que", () => {
         
         const { response } = await ProductsServices.getProducts()
 
-        expect(response.docs.length).toBeGreaterThanOrEqual(2)
+        expect(response.docs.length).toEqual(2)
     })
 
     test("el metodo searchByTitle debe traer productos que contengan la palabra pasada", async () => {
@@ -84,8 +84,8 @@ describe("Se espera que", () => {
         const ryzenProducts = await ProductsServices.searchByTitle(1,"Ryzen")
         const nvidiaProducts = await ProductsServices.searchByTitle(1,"Nvidia")
 
-        expect(ryzenProducts.response.docs.length).toBeGreaterThanOrEqual(3)
-        expect(nvidiaProducts.response.docs.length).toBeGreaterThanOrEqual(0)
+        expect(ryzenProducts.response.docs.length).toEqual(3)
+        expect(nvidiaProducts.response.docs.length).toEqual(0)
     })
 
     test("el metodo updateProduct debe traer un producto con sus respectivos cambios", async () => {
@@ -133,11 +133,6 @@ describe("Se espera que", () => {
             user: user.response.id,
             valueReview: 8,
             review: "Ta Buenisimo locoo!"
-        })
-
-        const withoutUser = await ProductsServices.reviewProduct(response.id, {
-            valueReview: 9,
-            review: "Ta Buenisimo locooo!"
         })
 
         expect(reviewedProduct.response.rating[0].user).toBe(user.response.id)
