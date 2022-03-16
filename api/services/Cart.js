@@ -1,5 +1,6 @@
 const { ProductModel } = require('../models/Products');
 const { UserModel } = require('../models/Users');
+
 class CartServices {
   static async newCartItem(id, data) {
     try {
@@ -68,6 +69,24 @@ class CartServices {
       };
     }
   }
+
+  static async confirmBuy(id) {
+      try {
+        const result = await UserModel.findById(id) 
+        result.history.push(result.carrito)
+        result.carrito = []
+        const updateProduct = await UserModel.findByIdAndUpdate(id , result, {new : true})
+        return {
+          error: false,
+          response: updateProduct,
+        }
+      } catch (error) {
+        return {
+          error: true,
+          response: error,
+        };
+      }
+      }
 }
 
 module.exports = CartServices;

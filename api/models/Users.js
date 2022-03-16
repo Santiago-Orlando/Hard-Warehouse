@@ -34,6 +34,10 @@ const UserSchema = new Schema({
     type: [CarritoItem],
     default: [],
   },
+  history: {
+    type : [[]],
+    default : []
+  },
   admin: {
     type: Boolean,
     default: false,
