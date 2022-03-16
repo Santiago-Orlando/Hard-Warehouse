@@ -4,7 +4,7 @@ const mongoosePagination = require('mongoose-paginate-v2');
 const RatingItem = new Schema({
   user: {
     type: String,
-    /* required: true, */
+    required: true
   },
   valueReview: {
     type: Number,

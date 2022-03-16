@@ -1,4 +1,4 @@
-const { ProductModel } = require('../models/Products');
+const { ProductModel } = require("../models/Products");
 
 class ProductsServices {
   static async newProduct(data) {
@@ -102,13 +102,17 @@ class ProductsServices {
 
   static async reviewProduct(id, data) {
     try {
-      const { user } = data;
       const productForReview = await ProductModel.findById(id);
-      if (!productForReview.id) return { error: true };
-      const matchUser = productForReview.rating.find(item => {
-        item.user === user;
+
+      const matchUser = productForReview.rating.filter((item) => {
+        return item.user === data.user;
       });
-      if (matchUser) return { error: true };
+      if (matchUser[0]){
+        return {
+          error: true,
+          response: "The user has a review already!",
+        };
+      }
 
       productForReview.rating.push(data);
 
