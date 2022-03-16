@@ -41,3 +41,42 @@ export const persistUserService = async () => {
 
   return user;
 };
+
+export const addCartUserService = async ({id, productId, cantidad, title, price, image} ) => {
+  productId = String(productId)
+  const user = await axios ({
+    method: 'POST',
+    data: { productId, cantidad, title, price, image },
+    withCredentials: true,
+    url: `http://localhost:3001/cart/add/${id}`
+  })
+
+  return user
+}
+
+export const removeCartService = async ({id, productId}) => {
+  /* console.log('USER ID', id)
+  console.log('PRODUCT ID', productId) */
+  const cart = await axios({
+    method: 'DELETE',
+    withCredentials: true,
+    url: `http://localhost:3001/cart/remove/${id}/${productId}`
+  })
+
+  return cart
+
+
+}
+export const increaseCartService = async ({id, productId, cantidad }) => {
+
+  const cart = await axios ({
+    method: 'POST',
+    data: { productId, cantidad },
+    withCredentials: true,
+    url: `http://localhost:3001/cart/modify/${id}`
+  })
+
+  return cart
+}
+  
+

@@ -29,6 +29,7 @@ const Navbar = () => {
   const user = useSelector((state) => state.user.data);
   const products = useSelector((state) => state.products.data);
 
+  console.log('CARRITO NAV', user.data.carrito.length )
   useEffect(() => {
     dispatch(persistUser());
   }, []);
@@ -77,7 +78,7 @@ const Navbar = () => {
             )}
             <Link to="/carrito">
               <IconButton aria-label="cart">
-                <StyledBadge badgeContent={4} color="primary">
+                <StyledBadge badgeContent={user.data.carrito.length} color="primary">
                   <ShoppingCartIcon className="cartIcon" />
                 </StyledBadge>
               </IconButton>

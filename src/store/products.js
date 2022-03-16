@@ -61,6 +61,7 @@ const productsSlice = createSlice({
     },
     [getSingleProduct.fulfilled]: (state, action) => {
       state.singleProduct = action.payload
+      state.singleProduct.quantity = 1
       state.loading = false
     },
     [getSingleProduct.rejected]: (state, action) => {

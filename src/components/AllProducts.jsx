@@ -7,14 +7,17 @@ import { Link } from "react-router-dom";
 import { useLocation, useParams } from "react-router";
 import { useSelect } from "@mui/base";
 
+
 function AllProducts() {
   const { category } = useParams();
   const location = useLocation();
   const dispatch = useDispatch();
   const allProducts = useSelector((state) => state.products.data);
-  const searchedProducts = useSelector(state => state.products.search)
+  const searchedProducts = useSelector((state) => state.products.search);
+  
 
-  console.log('BUSQUEDA', searchedProducts)
+
+ /*  console.log("SINGLE PRODUCT", product); */
 
   /* console.log(location, "LOCATE"); */
 
@@ -34,12 +37,12 @@ function AllProducts() {
             : allProducts
           ).map((product) => (
             <Grid item xs={3}>
-              <Link to={`/producto/${product.id}`}>
+              <Link to={`/producto/${product._id}`}>
                 <CardProduct
                   image={product.image}
                   title={product.title}
-                  /* price={product.price || 100} */
-                  /* rate={product.rating.rate || 4} */
+                  price={product.price}
+                  rating={product.rating}
                 />
               </Link>
             </Grid>
