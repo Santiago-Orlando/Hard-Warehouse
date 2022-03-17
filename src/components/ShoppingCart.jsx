@@ -260,7 +260,7 @@ function ShoppingCart() {
                 <Grid item xs={12}>
                   <Button
                     onClick={() => {
-                      navigate("/productos");
+                      navigate("/carrito/checkout");
                     }}
                     variant="contained"
                     size="large"
