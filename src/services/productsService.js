@@ -24,13 +24,7 @@ export const categoriesProductService = async category => {
     withCredentials:true,
     url: `http://localhost:3001/products/showCategoryProducts?category=${category}`
   })
-    
   return categoryProducts.data.docs
-}
-
-export const saleProductsService = async () => {
-  const saleProducts = await axios.get(`https://fakestoreapi.com/products/category/men's clothing`)
-  return saleProducts.data
 }
 
 export const postProductService = async (product) => {
@@ -79,7 +73,6 @@ export const editProductService = async (product) => {
     withCredentials: true,
     url: `http://localhost:3001/products/update/${product.id}`
   })
-  console.log("QUE_VUELVE", editProduct.data)
   return editProduct.data
 }
 
