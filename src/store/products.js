@@ -25,11 +25,6 @@ export const getCategoryProducts = createAsyncThunk(
   productsService.categoriesProductService
 )
 
-export const getSaleProducts = createAsyncThunk(
-  "GET_SALE_PRODUCTS",
-  productsService.saleProductsService
-)
-
 export const postProduct = createAsyncThunk(
   "POST_PRODUCT",
   productsService.postProductService
@@ -83,17 +78,6 @@ const productsSlice = createSlice({
       state.loading = false
     },
     [getCategoryProducts.rejected]: (state, action) => {
-      state.loading = false
-      state.error = action.error.message
-    },
-    [getSaleProducts.pending]: state => {
-      state.loading = true
-    },
-    [getSaleProducts.fulfilled]: (state, action) => {
-      state.sales = action.payload
-      state.loading = false
-    },
-    [getSaleProducts.rejected]: (state, action) => {
       state.loading = false
       state.error = action.error.message
     },

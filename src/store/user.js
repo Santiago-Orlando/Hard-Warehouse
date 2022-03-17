@@ -5,7 +5,7 @@ const userInitialState = {
   loading: false,
   data: {},
   error: "",
-  
+  logged: false,
 }
 
 export const sendLoginRequest = createAsyncThunk("LOGIN", usersService.userLoginService)
@@ -32,6 +32,7 @@ const userSlice = createSlice({
     },
     [sendLoginRequest.fulfilled]: (state, action) => {
       state.data = action.payload
+      state.logged = true
       state.loading = false
     },
     [sendLoginRequest.rejected]: (state, action) => {
@@ -43,6 +44,7 @@ const userSlice = createSlice({
     },
     [sendLogoutRequest.fulfilled]: (state, action) => {
       state.data = {}
+      state.logged = false
       state.loading = false
     },
     [sendLogoutRequest.rejected]: (state, action) => {
@@ -65,6 +67,7 @@ const userSlice = createSlice({
     },
     [persistUser.fulfilled]: (state, action) => {
       state.data = action.payload
+      state.logged = true
       state.loading = false
     },
     [persistUser.rejected]: (state, action) => {
