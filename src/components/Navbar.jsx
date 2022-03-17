@@ -95,19 +95,19 @@ const Navbar = () => {
             <Link className="categorias" to="productos">
               <h5>PRODUCTOS</h5>
             </Link>
-            <Link className="categorias" to="productos/electronics">
+            <Link className="categorias" to="productos/componentes">
               <h5>Componentes</h5>
             </Link>
-            <Link className="categorias" to="productos/jewelery">
+            <Link className="categorias" to="productos/equipos armados">
               <h5>Equipos armados</h5>
             </Link>
-            <Link className="categorias" to="productos/men's clothing">
+            <Link className="categorias" to="productos/notebooks">
               <h5>Notebooks</h5>
             </Link>
-            <Link className="categorias" to="productos/women's clothing">
+            <Link className="categorias" to="productos/monitores">
               <h5>Monitores</h5>
             </Link>
-            <Link className="categorias" to="perifericos">
+            <Link className="categorias" to="productos/perifericos">
               <h5>Periféricos</h5>
             </Link>
           </div>

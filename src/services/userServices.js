@@ -55,9 +55,7 @@ export const addCartUserService = async ({id, productId, cantidad, title, price,
 }
 
 export const removeCartService = async ({id, productId}) => {
-  /* console.log('USER ID', id)
-  console.log('PRODUCT ID', productId) */
-  const cart = await axios({
+    const cart = await axios({
     method: 'DELETE',
     withCredentials: true,
     url: `http://localhost:3001/cart/remove/${id}/${productId}`
@@ -79,17 +77,7 @@ export const increaseDecreaseCartService = async ({id, productId, cantidad }) =>
   return cart
 }
 
-/* export const decreaseCartService = async ({id, productId, cantidad}) => {
 
-  const cart = await axios ({
-    method: 'POST',
-    data: { productId, cantidad },
-    withCredentials: true,
-    url: `http://localhost:3001/cart/modify/${id}`
-  })
-
-  return cart
-} */
 
 
 
