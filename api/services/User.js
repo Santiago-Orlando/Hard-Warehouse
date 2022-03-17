@@ -1,6 +1,5 @@
 const { UserModel } = require("../models/Users");
 
-
 class UserServices {
   static async register(data) {
     try {
@@ -39,11 +38,9 @@ class UserServices {
 
   static async updateAdmin(id, adminData) {
     try {
-      const response = await UserModel.findByIdAndUpdate(
-        id,
-        adminData,
-        { new: true }
-      );
+      const response = await UserModel.findByIdAndUpdate(id, adminData, {
+        new: true,
+      });
       return {
         error: false,
         response,

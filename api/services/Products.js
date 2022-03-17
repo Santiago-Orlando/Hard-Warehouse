@@ -107,7 +107,7 @@ class ProductsServices {
       const matchUser = productForReview.rating.filter((item) => {
         return item.user === data.user;
       });
-      if (matchUser[0]){
+      if (matchUser[0]) {
         return {
           error: true,
           response: "The user has a review already!",
@@ -126,6 +126,24 @@ class ProductsServices {
       return {
         error: false,
         response: addedReview,
+      };
+    } catch (error) {
+      return {
+        error: true,
+        response: error,
+      };
+    }
+  }
+  static async searchByTags(page, tagList) {
+    try {
+      const response = await ProductModel.paginate(
+        { tags: { $all: tagList } },
+        { page, limit: 12 }
+      );
+
+      return {
+        error: false,
+        response,
       };
     } catch (error) {
       return {
