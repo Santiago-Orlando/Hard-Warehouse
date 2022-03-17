@@ -62,6 +62,15 @@ class ProductsController {
     if (error) return res.status(400).send(response);
     return res.status(201).send(response);
   }
+
+  static async searchByTags(req, res) {
+    const { page } = req.query;
+    const { tags } = req.body;
+    const { error, response } = await SearchServices.searchByTags(page, tags);
+
+    if (error) return res.status(400).send(response);
+    return res.status(200).send(response);
+  }
 }
 
 module.exports = ProductsController;

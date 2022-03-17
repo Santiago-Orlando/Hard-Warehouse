@@ -1,5 +1,8 @@
-const tagFunction = (arr) => {
-    return arr.filter(tag => tag !== "").map(tag => tag.toLowerCase())
+const tagFunction = (string) => {
+     
+    return string.split(',').map(el => el.trim() )
+
+    
 }
 
 export default tagFunction

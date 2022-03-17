@@ -29,6 +29,7 @@ const Navbar = () => {
   const user = useSelector((state) => state.user.data);
   const products = useSelector((state) => state.products.data);
 
+  
   useEffect(() => {
     dispatch(persistUser());
   }, []);
@@ -75,13 +76,18 @@ const Navbar = () => {
                 Sign Up
               </Link>
             )}
-            <Link to="/carrito">
+            {user.data ?
+            (<Link to="/carrito">
               <IconButton aria-label="cart">
-                <StyledBadge badgeContent={4} color="primary">
+                <StyledBadge badgeContent={user.data ? user.data.carrito.length : 0} color="primary">
                   <ShoppingCartIcon className="cartIcon" />
                 </StyledBadge>
               </IconButton>
-            </Link>
+            </Link>)
+            :
+            <></>
+          
+          }
           </div>
         </div>
         <div>

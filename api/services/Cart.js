@@ -1,15 +1,28 @@
+
 const { ProductModel } = require('../models/Products');
 const { UserModel } = require('../models/Users');
 const email = require("../config/nodemailer");
 
+
 class CartServices {
   static async newCartItem(id, data) {
     try {
-      const { productId, cantidad } = data;
+      const { productId, cantidad, price, image, title } = data;
       const productItem = await ProductModel.findById(productId);
-      if (!productItem.stock) return { error: true }; // aseguro q agrego algo con stock.
+
+      if (productItem.stock < cantidad) {
+        return { error: true, response: "Insufficient Stock!" };
+      }
+
       const user = await UserModel.findById(id);
-      user.carrito.push({ product: productItem.id, cantidad: cantidad });
+      user.carrito.push({
+        product: productId,
+        cantidad: cantidad,
+        price: price,
+        title: title,
+        image: image,
+      });
+
       const updatedUser = await UserModel.findByIdAndUpdate(id, user, {
         new: true,
       });
@@ -24,16 +37,15 @@ class CartServices {
       };
     }
   }
-  static async removeCartItem(id, data) {
+  static async removeCartItem(id, productId) {
+    
     try {
-      const { productId } = data;
       const user = await UserModel.findById(id);
-      user.carrito = user.carrito.filter(({ product }) => {
-        return product !== productId;
-      });
+      user.carrito = user.carrito.filter(({ product }) => product !== productId);
       const updatedUser = await UserModel.findByIdAndUpdate(id, user, {
         new: true,
       });
+     
       return {
         error: false,
         response: updatedUser,
@@ -49,7 +61,7 @@ class CartServices {
     try {
       const { productId, cantidad } = data;
       const user = await UserModel.findById(id);
-      user.carrito = user.carrito.map(item => {
+      user.carrito = user.carrito.map((item) => {
         if (item.product === productId) {
           return (item.cantidad = cantidad);
         } else {
@@ -72,6 +84,7 @@ class CartServices {
   }
 
   static async confirmBuy(id) {
+
       try {
         const user = await UserModel.findById(id)        
         user.history.push(user.carrito)
@@ -88,7 +101,7 @@ class CartServices {
           response: error,
         };
       }
-      }
+    }
 }
 
 module.exports = CartServices;

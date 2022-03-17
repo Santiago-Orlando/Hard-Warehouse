@@ -10,6 +10,18 @@ const CarritoItem = new Schema({
     type: Number,
     default: 1,
   },
+  image: {
+    type: String,
+    required: true,
+  },
+  price: {
+    type: Number,
+    required: true
+  },
+  title: {
+    type: String,
+    requires: true
+  }
 });
 
 const CarritoItemModel = model('Carrito', CarritoItem);

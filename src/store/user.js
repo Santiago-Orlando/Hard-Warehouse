@@ -1,19 +1,27 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
-import * as productsService from "../services/userServices"
+import * as usersService from "../services/userServices"
 
 const userInitialState = {
   loading: false,
   data: {},
   error: "",
+  
 }
 
-export const sendLoginRequest = createAsyncThunk("LOGIN", productsService.userLoginService)
+export const sendLoginRequest = createAsyncThunk("LOGIN", usersService.userLoginService)
 
-export const sendLogoutRequest = createAsyncThunk("LOGOUT", productsService.userLogoutService)
+export const sendLogoutRequest = createAsyncThunk("LOGOUT", usersService.userLogoutService)
 
-export const sendRegisterRequest = createAsyncThunk("REGISTER", productsService.userRegisterService)
+export const sendRegisterRequest = createAsyncThunk("REGISTER", usersService.userRegisterService)
 
-export const persistUser = createAsyncThunk("PERSIST", productsService.persistUserService)
+export const persistUser = createAsyncThunk("PERSIST", usersService.persistUserService)
+
+export const addToCart = createAsyncThunk("ADD_TO_USER_CART", usersService.addCartUserService)
+
+export const removeFromCart = createAsyncThunk("REMOVE_FROM_USER_CART", usersService.removeCartService)
+
+export const increaseDecreaseCart = createAsyncThunk("INCREASE_DECREASE_USER_CART", usersService.increaseDecreaseCartService)
+
 
 const userSlice = createSlice({
   name: "user",
@@ -60,6 +68,50 @@ const userSlice = createSlice({
       state.loading = false
     },
     [persistUser.rejected]: (state, action) => {
+      state.loading = false
+      state.error = action.error.message
+    },
+    [addToCart.pending]: state => {
+      state.loading = true
+    },
+    [addToCart.fulfilled]: (state, action) => {
+      state.data = action.payload
+      state.loading = false
+    },
+    [addToCart.rejected]: (state, action) => {
+      state.loading = false
+      state.error = action.error.message
+    },
+    [addToCart.pending]: state => {
+      state.loading = true
+    },
+    [addToCart.fulfilled]: (state, action) => {
+      state.data = action.payload
+      state.loading = false
+    },
+    [addToCart.rejected]: (state, action) => {
+      state.loading = false
+      state.error = action.error.message
+    },
+    [removeFromCart.pending]: state => {
+      state.loading = true
+    },
+    [removeFromCart.fulfilled]: (state, action) => {
+      state.data = action.payload
+      state.loading = false
+    },
+    [removeFromCart.rejected]: (state, action) => {
+      state.loading = false
+      state.error = action.error.message
+    },
+    [increaseDecreaseCart.pending]: state => {
+      state.loading = true
+    },
+    [increaseDecreaseCart.fulfilled]: (state, action) => {
+      state.data = action.payload
+      state.loading = false
+    },
+    [increaseDecreaseCart.rejected]: (state, action) => {
       state.loading = false
       state.error = action.error.message
     }
