@@ -9,7 +9,7 @@ class CartController {
   }
   static async removeCartItem(req, res) {
     const { id, productId } = req.params;
-    console.log(id, productId)
+
     const { error, response } = await CartServices.removeCartItem(id, productId);
     if (error) return res.status(400).send(response);
     return res.status(200).send(response)
