@@ -10,14 +10,11 @@ import {
   Grid,
   CardMedia,
   Button,
-  IconButton,
   Divider,
   Rating,
   MobileStepper,
 } from "@mui/material";
 import {
-  RemoveCircleOutline,
-  AddCircleOutline,
   Star,
   KeyboardArrowLeft,
   KeyboardArrowRight,
@@ -35,7 +32,6 @@ function Product() {
   const dispatch = useDispatch();
 
   const [value, setValue] = useState(0);
-  const [unidadAddCarrito, setUnidadAddCarrito] = useState(1);
 
   const productos = useSelector((state) => state.products);
   const user = useSelector((state) => state.user.data);
@@ -56,8 +52,6 @@ function Product() {
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
-
-  //if(productos.loading) return <h1>loading...</h1>
 
   if (!productos.singleProduct._id) return <h1> no hay datos</h1>;
 
@@ -151,15 +145,17 @@ function Product() {
                     <Typography variant="h6" component="div" gutterBottom>
                       <Typography>
                         <p className="letrasBlancas">
-                          Precio : ${" "}
-                          {productos.singleProduct.price * unidadAddCarrito}
+                          Precio : ${productos.singleProduct.price}
                         </p>
                       </Typography>
                     </Typography>
                   </Grid>
                   <Grid item xs={6}>
                     <Typography component="legend">
-                      <p className="letrasBlancas">Stock Disponible</p>
+                      <p className="letrasBlancas">
+                        Stock Disponible: {productos.singleProduct.stock}{" "}
+                        unidades
+                      </p>
                     </Typography>
                   </Grid>
                   <Grid item xs={6}>
@@ -201,11 +197,6 @@ function Product() {
                             price: productos.singleProduct.price,
                             cantidad: productos.singleProduct.quantity,
                           })
-
-                          //    {
-                          //  type: "ADD",
-                          //  payload: productos.singleProduct,
-                          //}
                         );
                       }}
                       className="button-addCarrito"

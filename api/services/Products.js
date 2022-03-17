@@ -137,7 +137,7 @@ class ProductsServices {
   static async searchByTags(page, tagList) {
     try {
       const response = await ProductModel.paginate(
-        { tags: { $all: tagList } },
+        { tags: { $all: [tagList] } },
         { page, limit: 12 }
       );
 
