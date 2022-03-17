@@ -7,5 +7,5 @@ export const addToCartService =(product, units) => {
       return [...cart, action.payload];
     } else {
       return cart;
-    
+    }
 }

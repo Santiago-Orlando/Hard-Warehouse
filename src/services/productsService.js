@@ -1,8 +1,12 @@
 import axios from "axios"
 
 export const allProductsService = async () => {
-  const allProducts = await axios.get(`https://fakestoreapi.com/products`)
-  return allProducts.data
+  const allProducts = await axios({
+    method: "GET",
+    withCredentials: true,
+    url: 'http://localhost:3001/products/showProducts/'
+  })
+  return allProducts.data.docs
 }
 
 export const singleProductService = async id => {
@@ -54,6 +58,14 @@ export const searchProductsByTitle = async ({title}) => {
     withCredentials: true,
     url: `http://localhost:3001/products/searchByTitle/${title}`,
   })
-  console.log ('RESULTADO BACK', searchedProducts.data.docs)
   return searchedProducts.data.docs
+}
+
+export const deleteProductService = async (id) => {
+  const deleteProduct = await axios({
+    method: "DELETE",
+    withCredentials: true,
+    url: `http://localhost:3001/products/delete/${id}`
+  })
+  return id
 }
