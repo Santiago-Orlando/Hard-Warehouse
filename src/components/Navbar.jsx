@@ -29,7 +29,7 @@ const Navbar = () => {
   const user = useSelector((state) => state.user.data);
   const products = useSelector((state) => state.products.data);
 
-  console.log('CARRITO NAV', user.data.carrito.length )
+  
   useEffect(() => {
     dispatch(persistUser());
   }, []);
