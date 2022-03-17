@@ -61,6 +61,26 @@ export const searchProductsByTitle = async ({title}) => {
   return searchedProducts.data.docs
 }
 
+export const editProductService = async (product) => {
+  console.log("ID", product.id)
+  const editProduct = await axios({
+    method: "PUT",
+    data: {
+      title: product.title,
+      category: product.category,
+      stock: product.stock,
+      price: product.price,
+      image: product.image,
+      details: product.details,
+      tags: product.tags
+      },
+    withCredentials: true,
+    url: `http://localhost:3001/products/update/${product.id}`
+  })
+  console.log("QUE_VUELVE", editProduct.data)
+  return editProduct.data
+}
+
 export const deleteProductService = async (id) => {
   const deleteProduct = await axios({
     method: "DELETE",

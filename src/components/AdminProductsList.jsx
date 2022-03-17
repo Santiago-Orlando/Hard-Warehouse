@@ -2,26 +2,22 @@ import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 
 import { Avatar, Container, Grid, IconButton, Typography } from "@mui/material"
-import {
-  DeleteForeverRounded,
-  EditRounded,
-  // AddRounded,
-  // RemoveRounded,
-  // ProductionQuantityLimitsSharp,
-} from "@mui/icons-material"
+import { DeleteForeverRounded, EditRounded } from "@mui/icons-material"
 
-import { getProducts, deleteProduct } from "../store/products"
+import { getProducts, getSingleProduct, deleteProduct } from "../store/products"
 
 const AdminProductsList = () => {
   const products = useSelector(state => state.products.data)
   const dispatch = useDispatch()
-  const productsLength = products.length
 
   useEffect(() => {
     dispatch(getProducts())
   }, [])
 
-  console.log("PRODUCTS", products)
+  const handleClickEdit = (productId) => {
+    dispatch(getSingleProduct(productId))
+  }
+
   return (
     <>
       <Grid item xs={12}></Grid>
@@ -46,7 +42,6 @@ const AdminProductsList = () => {
               container
               sx={{ border: "solid 2px black", borderRadius: "5px" }}
             >
-
               <Grid item xs={1}>
                 <Typography variant="subtitle1" component="div" gutterBottom>
                   Img
@@ -58,7 +53,6 @@ const AdminProductsList = () => {
                   Titulo
                 </Typography>
               </Grid>
-
 
               <Grid item xs={2}>
                 <Typography variant="subtitle1" component="div" gutterBottom>
@@ -92,61 +86,73 @@ const AdminProductsList = () => {
             </Grid>
           </Grid>
 
-
           <Grid item xs={12}>
-          {products.map((product, i) => (
-            <>
-            <Grid container alignItems="center" justifyContent="center" sx={{ marginBottom: "10px" }}>
+            {products.map((product, i) => (
+              <>
+                <Grid
+                  container
+                  alignItems="center"
+                  justifyContent="center"
+                  sx={{ marginBottom: "10px" }}
+                >
+                  <Grid item xs={1} aria-label="imagen">
+                    <Avatar variant="square" src={product.image}></Avatar>
+                  </Grid>
 
-              <Grid item xs={1} aria-label="imagen"  >
-                <Avatar variant="square" src={product.image}></Avatar>
-              </Grid>
-
-              <Grid item xs={2}>
-                <Typography variant="subtitle1" component="div" gutterBottom>
-                  {product.title}
-                </Typography>
-              </Grid>
-
-              <Grid item xs={2}>
-                <Typography variant="subtitle1" component="div" gutterBottom>
-                  {product.category}
-                </Typography>
-              </Grid>
-
-              <Grid item xs={2}>
-                {product.price}
-              </Grid>
-
-              <Grid item xs={2}>
-                <Grid container alignItems="center">
-  
-                  <Grid item xs={12}>
-                    {" "}
-                    <Typography variant="body2" gutterBottom>
-                      {product.stock}
+                  <Grid item xs={2}>
+                    <Typography
+                      variant="subtitle1"
+                      component="div"
+                      gutterBottom
+                    >
+                      {product.title}
                     </Typography>
                   </Grid>
-                  
+
+                  <Grid item xs={2}>
+                    <Typography
+                      variant="subtitle1"
+                      component="div"
+                      gutterBottom
+                    >
+                      {product.category}
+                    </Typography>
+                  </Grid>
+
+                  <Grid item xs={2}>
+                    {product.price}
+                  </Grid>
+
+                  <Grid item xs={2}>
+                    <Grid container alignItems="center">
+                      <Grid item xs={12}>
+                        {" "}
+                        <Typography variant="body2" gutterBottom>
+                          {product.stock}
+                        </Typography>
+                      </Grid>
+                    </Grid>
+                  </Grid>
+
+                  <Grid item xs={2}>
+                    <IconButton edge="end" aria-label="edit">
+                      <EditRounded onClick={() => {handleClickEdit(product._id)}} />
+                    </IconButton>
+                  </Grid>
+
+                  <Grid item xs={1}>
+                    <IconButton edge="end" aria-label="delete">
+                      <DeleteForeverRounded
+                        onClick={() => {
+                          dispatch(deleteProduct(product._id))
+                        }}
+                      />
+                    </IconButton>
+                  </Grid>
                 </Grid>
-              </Grid>
-
-              <Grid item xs={2}>
-              <IconButton edge="end" aria-label="edit">
-                  <EditRounded />
-                </IconButton>
-              </Grid>
-
-              <Grid item xs={1}>
-                <IconButton edge="end" aria-label="delete" >
-                  <DeleteForeverRounded onClick={()=>{dispatch(deleteProduct(product._id))}} />
-                </IconButton>
-              </Grid>
-            </Grid>
               </>
-                ))}
+            ))}
           </Grid>
-
         </Grid>
       </Container>
     </>
