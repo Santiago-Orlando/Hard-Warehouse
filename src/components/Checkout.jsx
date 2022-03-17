@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import {
 
     Button,
@@ -10,14 +10,17 @@ import {
     Typography,
 } from "@mui/material";
 
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from 'react-router';
+import { editOneProduct, getSingleProduct } from '../store/products';
 
 
 function Checkout() {
+    const dispatch = useDispatch()
     const navigate = useNavigate
     const cart = useSelector((state) => state.user.data.data.carrito);
     const user = useSelector((state) => state.user.data.data);
+    const productoSingular = useSelector((state) => state.products.singleProduct)
 
     console.log(user, "USER");
 
@@ -26,6 +29,22 @@ function Checkout() {
     };
     const total = cart.reduce(addition, 0);
 
+
+
+
+    const comprarHandle = () => {
+
+        cart.map(product => {
+            let idProducto = product.product
+            dispatch(getSingleProduct(idProducto))
+            let nuevoStock = productoSingular.stock - product.cantidad
+            dispatch(editOneProduct({
+                id: idProducto,
+                stock: parseInt(nuevoStock)
+            }))
+        })
+    }
+
     return (
         <div>
 
@@ -33,11 +52,11 @@ function Checkout() {
 
             <Grid
                 container
-                sx={{ margin: "20px 0px", alignItems: "center", color: "#13ffd5",justifyContent:"center" }}
+                sx={{ margin: "20px 0px", alignItems: "center", color: "#13ffd5", justifyContent: "center" }}
             >
                 <Grid item xs={6}>
                     <Typography variant="h4" component="div" gutterBottom>
-                       Genial {user.fullName}!, ya estas a punto de concluir tu compra.
+                        Genial {user.fullName}!, ya estas a punto de concluir tu compra.
                     </Typography>
                 </Grid>
             </Grid>
@@ -45,8 +64,8 @@ function Checkout() {
 
                 <Grid item xs={12}>
                     <Typography variant="h5" component="div" gutterBottom>
-                       
-                       Ultimos requisitos:
+
+                        Ultimos requisitos:
                         <Divider />
                     </Typography>
                 </Grid>
@@ -71,7 +90,7 @@ function Checkout() {
                                             value={user.fullName}
                                             placeholder="Nombre Completo"
                                         />
-                                       
+
                                     </Grid>
                                     <Grid item xs={12}>
                                         <input
@@ -195,9 +214,7 @@ function Checkout() {
                 </Grid>
                 <Grid item xs={2}>
                     <Button
-                        onClick={() => {
-                            
-                        }}
+                        onClick={() => {comprarHandle()}}
                         variant="contained"
                         size="large"
                         sx={{
