@@ -1,32 +1,29 @@
-import { TextareaAutosize } from "@mui/material";
-import { useDispatch, useSelector } from "react-redux";
+import { TextareaAutosize } from "@mui/material"
+import { useDispatch, useSelector } from "react-redux"
+import { useEffect } from "react"
 
-import AdminProductsList from "./AdminProductsList";
-import { postProduct } from "../store/products";
-import tagFunction from "../utils/tagsFunction";
+import AdminProductsList from "./AdminProductsList"
+import { postProduct, getProducts } from "../store/products"
+import tagFunction from "../utils/tagsFunction"
 
-import useInput from "../hooks/useInput";
-import useInputNumber from "../hooks/useInputNumber";
-import { Link, useNavigate } from "react-router-dom";
+import useInput from "../hooks/useInput"
 
 const Admin = () => {
-  let viewForm = false;
-  const author = useSelector((state) => state.user.data.data);
-  const title = useInput("title");
-  const category = useInput("category");
+  const author = useSelector(state => state.user.data.data)
+  const title = useInput("title")
+  const category = useInput("category")
 
-  const details = useInput("details");
-  const image = useInput("image");
-  const price = useInput("price");
-  const stock = useInput("stock");
+  const details = useInput("details")
+  const image = useInput("image")
+  const price = useInput("price")
+  const stock = useInput("stock")
+  const tag1 = useInput("tag1")
 
-  const tag1 = useInput("tag1");
+  const dispatch = useDispatch()
 
-  const dispatch = useDispatch();
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const tags = tagFunction(tag1.value);
+  const handleSubmit = e => {
+    e.preventDefault()
+    const tags = tagFunction(tag1.value)
 
     dispatch(
       postProduct({
@@ -39,15 +36,15 @@ const Admin = () => {
         details: details.value,
         tags,
       })
-    );
-    title.setValue("");
-    category.setValue("");
-    details.setValue("");
-    image.setValue("");
-    price.setValue("");
-    stock.setValue("");
-    tag1.setValue("");
-  };
+    )
+    title.setValue("")
+    category.setValue("")
+    details.setValue("")
+    image.setValue("")
+    price.setValue("")
+    stock.setValue("")
+    tag1.setValue("")
+  }
 
   return (
     <>
@@ -119,9 +116,9 @@ const Admin = () => {
           <div></div>
         </form>
       </div>
-      {/* <AdminProductsList /> */}
+      <AdminProductsList />
     </>
-  );
-};
+  )
+}
 
-export default Admin;
+export default Admin

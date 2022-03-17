@@ -1,11 +1,27 @@
+import { useEffect } from "react"
+import { useDispatch, useSelector } from "react-redux"
+
 import { Avatar, Container, Grid, IconButton, Typography } from "@mui/material"
 import {
   DeleteForeverRounded,
-  AddRounded,
-  RemoveRounded,
+  EditRounded,
+  // AddRounded,
+  // RemoveRounded,
+  // ProductionQuantityLimitsSharp,
 } from "@mui/icons-material"
 
+import { getProducts, deleteProduct } from "../store/products"
+
 const AdminProductsList = () => {
+  const products = useSelector(state => state.products.data)
+  const dispatch = useDispatch()
+  const productsLength = products.length
+
+  useEffect(() => {
+    dispatch(getProducts())
+  }, [])
+
+  console.log("PRODUCTS", products)
   return (
     <>
       <Grid item xs={12}></Grid>
@@ -16,7 +32,6 @@ const AdminProductsList = () => {
             p: 3,
             backgroundColor: "rgb(231, 231, 231)",
             textAlign: "center",
-            // border: "solid 2px black",
             borderRadius: "10px",
           }}
         >
@@ -31,9 +46,23 @@ const AdminProductsList = () => {
               container
               sx={{ border: "solid 2px black", borderRadius: "5px" }}
             >
-              <Grid item xs={4}>
+
+              <Grid item xs={1}>
                 <Typography variant="subtitle1" component="div" gutterBottom>
-                  Descripcion
+                  Img
+                </Typography>
+              </Grid>
+
+              <Grid item xs={2}>
+                <Typography variant="subtitle1" component="div" gutterBottom>
+                  Titulo
+                </Typography>
+              </Grid>
+
+
+              <Grid item xs={2}>
+                <Typography variant="subtitle1" component="div" gutterBottom>
+                  Categoria
                 </Typography>
               </Grid>
 
@@ -48,14 +77,14 @@ const AdminProductsList = () => {
                   Stock
                 </Typography>
               </Grid>
-              
+
               <Grid item xs={2}>
                 <Typography variant="subtitle1" component="div" gutterBottom>
                   Editar
                 </Typography>
               </Grid>
 
-              <Grid item xs={2}>
+              <Grid item xs={1}>
                 <Typography variant="subtitle1" component="div" gutterBottom>
                   Eliminar
                 </Typography>
@@ -63,61 +92,61 @@ const AdminProductsList = () => {
             </Grid>
           </Grid>
 
-          <Grid item xs={12}>
-            <Grid container alignItems="center" sx={{ marginBottom: "10px" }}>
-              {/* <Grid item xs={1}>
-                <Avatar
-                  variant="square"
-                  src="https://www.dzoom.org.es/wp-content/uploads/2014/06/portadainspcuadr-810x540.jpg"
-                >
-                  N
-                </Avatar>
-              </Grid> */}
 
-              <Grid item xs={4}>
+          <Grid item xs={12}>
+          {products.map((product, i) => (
+            <>
+            <Grid container alignItems="center" justifyContent="center" sx={{ marginBottom: "10px" }}>
+
+              <Grid item xs={1} aria-label="imagen"  >
+                <Avatar variant="square" src={product.image}></Avatar>
+              </Grid>
+
+              <Grid item xs={2}>
                 <Typography variant="subtitle1" component="div" gutterBottom>
-                  Titulo descriptivo del Producto
+                  {product.title}
                 </Typography>
               </Grid>
 
               <Grid item xs={2}>
-                1000 $
+                <Typography variant="subtitle1" component="div" gutterBottom>
+                  {product.category}
+                </Typography>
+              </Grid>
+
+              <Grid item xs={2}>
+                {product.price}
               </Grid>
 
               <Grid item xs={2}>
                 <Grid container alignItems="center">
-                  <Grid item xs={5}>
-                    {" "}
-                    <IconButton edge="end" aria-label="delete">
-                      <RemoveRounded />
-                    </IconButton>
-                  </Grid>
-                  <Grid item xs={2}>
+  
+                  <Grid item xs={12}>
                     {" "}
                     <Typography variant="body2" gutterBottom>
-                      2
+                      {product.stock}
                     </Typography>
                   </Grid>
-                  <Grid item xs={2}>
-                    {" "}
-                    <IconButton edge="end" aria-label="delete">
-                      <AddRounded />
-                    </IconButton>
-                  </Grid>
+                  
                 </Grid>
               </Grid>
 
               <Grid item xs={2}>
-                2000
+              <IconButton edge="end" aria-label="edit">
+                  <EditRounded />
+                </IconButton>
               </Grid>
 
-              <Grid item xs={2}>
-                <IconButton edge="end" aria-label="delete">
-                  <DeleteForeverRounded />
+              <Grid item xs={1}>
+                <IconButton edge="end" aria-label="delete" >
+                  <DeleteForeverRounded onClick={()=>{dispatch(deleteProduct(product._id))}} />
                 </IconButton>
               </Grid>
             </Grid>
+              </>
+                ))}
           </Grid>
+
         </Grid>
       </Container>
     </>
