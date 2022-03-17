@@ -1,15 +1,25 @@
-const { ProductModel } = require('../models/Products');
-const { UserModel } = require('../models/Users');
+const { ProductModel } = require("../models/Products");
+const { UserModel } = require("../models/Users");
 
 class CartServices {
   static async newCartItem(id, data) {
     try {
       const { productId, cantidad, price, image, title } = data;
       const productItem = await ProductModel.findById(productId);
-      if (!productItem.stock) return { error: true }; // aseguro q agrego algo con stock.
+
+      if (productItem.stock < cantidad) {
+        return { error: true, response: "Insufficient Stock!" };
+      }
+
       const user = await UserModel.findById(id);
-      
-      user.carrito.push({ product: productId, cantidad: cantidad, price: price, title: title, image: image });
+      user.carrito.push({
+        product: productId,
+        cantidad: cantidad,
+        price: price,
+        title: title,
+        image: image,
+      });
+
       const updatedUser = await UserModel.findByIdAndUpdate(id, user, {
         new: true,
       });
@@ -48,7 +58,7 @@ class CartServices {
     try {
       const { productId, cantidad } = data;
       const user = await UserModel.findById(id);
-      user.carrito = user.carrito.map(item => {
+      user.carrito = user.carrito.map((item) => {
         if (item.product === productId) {
           return (item.cantidad = cantidad);
         } else {
@@ -71,22 +81,24 @@ class CartServices {
   }
 
   static async confirmBuy(id) {
-      try {
-        const result = await UserModel.findById(id) 
-        result.history.push(result.carrito)
-        result.carrito = []
-        const updateProduct = await UserModel.findByIdAndUpdate(id , result, {new : true})
-        return {
-          error: false,
-          response: updateProduct,
-        }
-      } catch (error) {
-        return {
-          error: true,
-          response: error,
-        };
-      }
-      }
+    try {
+      const result = await UserModel.findById(id);
+      result.history.push(result.carrito);
+      result.carrito = [];
+      const updateProduct = await UserModel.findByIdAndUpdate(id, result, {
+        new: true,
+      });
+      return {
+        error: false,
+        response: updateProduct,
+      };
+    } catch (error) {
+      return {
+        error: true,
+        response: error,
+      };
+    }
+  }
 }
 
 module.exports = CartServices;
