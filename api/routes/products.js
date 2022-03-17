@@ -3,6 +3,7 @@ const ProductsController = require("../controllers/Products")
 const { isAdmin } = require("../middleware/isAdmin")
 
 router.get("/showProducts", ProductsController.getProducts)
+router.get("/showCategoryProducts", ProductsController.getProductsByCategory)
 router.get("/showOne/:id", ProductsController.getProduct)
 router.get("/searchByTitle/:title", ProductsController.searchByTitle)
 router.get("/searchByTags", ProductsController.searchByTags)

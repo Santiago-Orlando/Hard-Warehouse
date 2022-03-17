@@ -4,7 +4,7 @@ export const allProductsService = async () => {
   const allProducts = await axios({
     method: "GET",
     withCredentials: true,
-    url: 'http://localhost:3001/products/showProducts/'
+    url: 'http://localhost:3001/products/showProducts'
   })
   return allProducts.data.docs
 }
@@ -19,8 +19,13 @@ export const singleProductService = async id => {
 }
 
 export const categoriesProductService = async category => {
-  const categoryProducts = await axios.get(`https://fakestoreapi.com/products/category/${category}`)
-  return categoryProducts.data
+  const categoryProducts = await axios({
+    method: 'GET',
+    withCredentials:true,
+    url: `http://localhost:3001/products/showCategoryProducts?category=${category}`
+  })
+    
+  return categoryProducts.data.docs
 }
 
 export const saleProductsService = async () => {
@@ -47,10 +52,7 @@ export const postProductService = async (product) => {
   return postProduct.data
 }
 
-export const searchProductsByTag = async (tag) => {
-  const searchedProducts =  await axios.get(`http://localhost:3001/search/?q=tags=${tag}`)
-  return searchedProducts.data
-}
+
 
 export const searchProductsByTitle = async ({title}) => {
   const searchedProducts =  await axios({
@@ -68,4 +70,14 @@ export const deleteProductService = async (id) => {
     url: `http://localhost:3001/products/delete/${id}`
   })
   return id
+}
+
+export const getProductByTagSercive = async (tag) => {
+  const tagProducts = await axios({
+    method: 'GET',
+    withCredentials:true,
+    url: `http://localhost:3001/products/searchByTags?tags=${tag}`
+  })
+  
+  return tagProducts.data.docs
 }

@@ -43,6 +43,9 @@ export const searchProducts = createAsyncThunk(
 export const deleteProduct = createAsyncThunk("DELETE_PRODUCT", 
 productsService.deleteProductService)
 
+export const getProductByTag = createAsyncThunk("GET_BY_TAG", 
+productsService.getProductByTagSercive)
+
 const productsSlice = createSlice({
   name: "products",
   initialState: productsInitialState,
@@ -125,6 +128,17 @@ const productsSlice = createSlice({
       state.loading = false
       state.error = action.error.message
     },
+    [getProductByTag.pending]: state => {
+      state.loading = true
+    },
+    [getProductByTag.fulfilled]: (state, action) => {
+      state.sales = action.payload
+      state.loading = false
+    },
+    [getProductByTag.rejected]: (state, action) => {
+      state.loading = false
+      state.error = action.error.message
+    }
   },
 })
 

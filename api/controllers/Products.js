@@ -9,10 +9,23 @@ class ProductsController {
   }
 
   static async getProducts(req, res) {
-    const { page } = req.query || 1;
+    const { page, category } = req.query || 1;
     const { error, response } = await ProductsServices.getProducts(
       page,
       req.body
+      
+    );
+
+    if (error) return res.status(400).send(response);
+    return res.send(response);
+  }
+
+  static async getProductsByCategory(req, res) {
+    const { page, category } = req.query || 1;
+    const { error, response } = await ProductsServices.getProducts(
+      page,
+      { category },
+      
     );
 
     if (error) return res.status(400).send(response);
@@ -64,9 +77,8 @@ class ProductsController {
   }
 
   static async searchByTags(req, res) {
-    const { page } = req.query;
-    const { tags } = req.body;
-    const { error, response } = await SearchServices.searchByTags(page, tags);
+    const { page, tags } = req.query;
+    const { error, response } = await ProductsServices.searchByTags(page, tags);
 
     if (error) return res.status(400).send(response);
     return res.status(200).send(response);
