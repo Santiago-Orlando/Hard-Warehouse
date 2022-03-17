@@ -64,7 +64,7 @@ describe("Se espera que", () => {
     test("El metodo getUsers debe traer todos los usuarios de la base de datos", async () => {
         const { response } = await UserServices.getUsers()
 
-        expect(response.length).toEqual(2)
+        expect(response.length).toBeGreaterThanOrEqual(2)
     })
 
     test("El metodo deleteUser debe eliminar a un usuario", async () => {

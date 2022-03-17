@@ -8,7 +8,6 @@ const UserServices = require("../services/User")
 describe("Se espera que", () => {
 
     beforeAll(async () => {
-
         
         const connection = await mongoose.connect("mongodb://127.0.0.1:27017/Hard-warehouse-test")
 
@@ -49,6 +48,21 @@ describe("Se espera que", () => {
         stock: 5,
         price: 200,
         tags: ["procesador", "amd", "serie 5000"]
+    }
+
+    const product_5 = {
+        title: "Nvidia 2070s",
+        author: "Santiago Orlando",
+        category: "Grafica",
+        stock: 5,
+        price: 200,
+        tags: ["grafica", "nvidia", "serie 2000"]
+    }
+
+    const user_1 = {
+        fullName: "Mar Cortina",
+        email: "Cortina@mail.com",
+        password: "1234"
     }
 
     test("el metodo newProduct cree un producto", async () => {
@@ -110,11 +124,7 @@ describe("Se espera que", () => {
     test("el metodo reviewProduct debe agregar una review a un producto", async () => {
 
         const { response } = await ProductsServices.newProduct(product_1)
-        const user = await UserServices.register({
-            fullName: "Manfredi",
-            email: "manfredi@mail.com",
-            password: "1234"
-        })
+        const user = await UserServices.register(user_1)
 
         const reviewedProduct = await ProductsServices.reviewProduct(response.id, {
             user: user.response.id,
@@ -145,6 +155,20 @@ describe("Se espera que", () => {
         expect(sameUser.response).toBe("The user has a review already!")
         expect(sameUser.error).toEqual(true)
 
+    })
+
+    test("El metodo searchByTags busque por cualquier cantidad de tags", async () => {
+        const procesadores = await ProductsServices.searchByTags(1, ["procesador"])
+        const serie3000 = await ProductsServices.searchByTags(1, ["serie 3000"])
+        const procesadoresYSerie3000 = await ProductsServices.searchByTags(1, ["procesador", "serie 3000"])
+        const nvidia = await ProductsServices.searchByTags(1, ["nvidia", "procesador", "serie 2000"])
+
+        console.log(procesadores.response.docs);
+
+        expect(procesadores.response.docs.length).toEqual(5)
+        expect(serie3000.response.docs.length).toEqual(4)
+        expect(procesadoresYSerie3000.response.docs.length).toEqual(4)
+        expect(nvidia.response.docs.length).toEqual(0)
     })
 
     afterAll(async () => {
