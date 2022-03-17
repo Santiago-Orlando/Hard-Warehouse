@@ -1,5 +1,6 @@
 const { ProductModel } = require('../models/Products');
 const { UserModel } = require('../models/Users');
+const email = require("../config/nodemailer");
 
 class CartServices {
   static async newCartItem(id, data) {
@@ -72,10 +73,11 @@ class CartServices {
 
   static async confirmBuy(id) {
       try {
-        const result = await UserModel.findById(id) 
-        result.history.push(result.carrito)
-        result.carrito = []
-        const updateProduct = await UserModel.findByIdAndUpdate(id , result, {new : true})
+        const user = await UserModel.findById(id)        
+        user.history.push(user.carrito)
+        user.carrito = []
+        const updateProduct = await UserModel.findByIdAndUpdate(id , user, {new : true});
+        email.sendMail(user)
         return {
           error: false,
           response: updateProduct,
