@@ -76,13 +76,18 @@ const Navbar = () => {
                 Sign Up
               </Link>
             )}
-            <Link to="/carrito">
+            {user.data ?
+            (<Link to="/carrito">
               <IconButton aria-label="cart">
                 <StyledBadge badgeContent={user.data ? user.data.carrito.length : 0} color="primary">
                   <ShoppingCartIcon className="cartIcon" />
                 </StyledBadge>
               </IconButton>
-            </Link>
+            </Link>)
+            :
+            <></>
+          
+          }
           </div>
         </div>
         <div>

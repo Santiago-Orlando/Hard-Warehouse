@@ -281,3 +281,24 @@ p {
   background-color: #858585;
 }
 
+.cardContainer{
+  width: 250px;
+  height: 420px;
+  margin-bottom: 20px;
+}
+
+.cardContent{
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+  align-items: center;
+  background-color: white; 
+  width: 95%;
+  height: 80%;
+}
+
+.cardTitle{
+  text-align: center;
+  color: #393939;
+  text-decoration: none;
+}

@@ -20,7 +20,8 @@ export const addToCart = createAsyncThunk("ADD_TO_USER_CART", usersService.addCa
 
 export const removeFromCart = createAsyncThunk("REMOVE_FROM_USER_CART", usersService.removeCartService)
 
-export const increaseCart = createAsyncThunk("INCREASE_USER_CART", usersService.increaseCartService)
+export const increaseDecreaseCart = createAsyncThunk("INCREASE_DECREASE_USER_CART", usersService.increaseDecreaseCartService)
+
 
 const userSlice = createSlice({
   name: "user",
@@ -103,14 +104,14 @@ const userSlice = createSlice({
       state.loading = false
       state.error = action.error.message
     },
-    [increaseCart.pending]: state => {
+    [increaseDecreaseCart.pending]: state => {
       state.loading = true
     },
-    [increaseCart.fulfilled]: (state, action) => {
+    [increaseDecreaseCart.fulfilled]: (state, action) => {
       state.data = action.payload
       state.loading = false
     },
-    [increaseCart.rejected]: (state, action) => {
+    [increaseDecreaseCart.rejected]: (state, action) => {
       state.loading = false
       state.error = action.error.message
     }

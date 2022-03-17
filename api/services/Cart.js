@@ -8,7 +8,8 @@ class CartServices {
       const productItem = await ProductModel.findById(productId);
       if (!productItem.stock) return { error: true }; // aseguro q agrego algo con stock.
       const user = await UserModel.findById(id);
-      user.carrito.push({ product: productItem.id, cantidad: cantidad, price: price, title: title, image: image });
+      
+      user.carrito.push({ product: productId, cantidad: cantidad, price: price, title: title, image: image });
       const updatedUser = await UserModel.findByIdAndUpdate(id, user, {
         new: true,
       });
@@ -24,15 +25,14 @@ class CartServices {
     }
   }
   static async removeCartItem(id, productId) {
+    
     try {
-      //const { productId } = data;
       const user = await UserModel.findById(id);
-      user.carrito = user.carrito.filter(({ product }) => {
-        return product !== productId;
-      });
+      user.carrito = user.carrito.filter(({ product }) => product !== productId);
       const updatedUser = await UserModel.findByIdAndUpdate(id, user, {
         new: true,
       });
+     
       return {
         error: false,
         response: updatedUser,

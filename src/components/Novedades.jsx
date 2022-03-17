@@ -56,7 +56,7 @@ const Novedades = () => {
   
             {products.map(product => (
               <Grid key={product.id} item >
-                <Link to={`/producto/${product.id}`}>
+                <Link to={`/producto/${product.id}`} style={{ textDecoration: 'none' }}>
                   <CardProduct
                     image={product.image}
                     title={product.title}
