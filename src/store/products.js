@@ -40,6 +40,8 @@ export const searchProducts = createAsyncThunk(
   productsService.searchProductsByTitle
 )
 
+export const editOneProduct = createAsyncThunk("EDIT_PRODUCT", productsService.editProductService)
+
 export const deleteProduct = createAsyncThunk("DELETE_PRODUCT", 
 productsService.deleteProductService)
 
@@ -125,6 +127,18 @@ const productsSlice = createSlice({
       state.loading = false
     },
     [deleteProduct.rejected]: (state, action) => {
+      state.loading = false
+      state.error = action.error.message
+    },
+    [editOneProduct.pending]: state => {
+      state.loading = true
+    },
+    [editOneProduct.fulfilled]: (state, action) => {
+      state.data = [...state.data.filter(prod => prod._id !== action.payload._id), action.payload]
+      state.singleProduct = {}
+      state.loading = false
+    },
+    [editOneProduct.rejected]: (state, action) => {
       state.loading = false
       state.error = action.error.message
     },
