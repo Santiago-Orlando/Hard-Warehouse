@@ -9,7 +9,8 @@ import Carousel from 'react-elastic-carousel'
 const Ofertas = () => {
   const breakPoints = [
     {width: 500, itemsToShow: 1},
-    {width: 768, itemsToShow: 4},
+    {width: 700, itemsToShow: 3},
+    {width: 868, itemsToShow: 4},
   
   ]
   const dispatch = useDispatch()
@@ -54,7 +55,7 @@ const Ofertas = () => {
           <Carousel breakPoints = {breakPoints}>
             {ofertas.map(product => (
               <Grid key={product.id} item >
-                <Link to={`/producto/${product.id}`}>
+                <Link to={`/producto/${product.id}`} style={{ textDecoration: 'none' }}>
                   <CardProduct
                     image={product.image}
                     title={product.title}

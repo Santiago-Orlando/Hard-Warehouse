@@ -19,6 +19,7 @@ class CartServices {
         title: title,
         image: image,
       });
+
       const updatedUser = await UserModel.findByIdAndUpdate(id, user, {
         new: true,
       });
@@ -34,14 +35,14 @@ class CartServices {
     }
   }
   static async removeCartItem(id, productId) {
+    
     try {
       const user = await UserModel.findById(id);
-      user.carrito = user.carrito.filter(({ product }) => {
-        return product !== productId;
-      });
+      user.carrito = user.carrito.filter(({ product }) => product !== productId);
       const updatedUser = await UserModel.findByIdAndUpdate(id, user, {
         new: true,
       });
+     
       return {
         error: false,
         response: updatedUser,

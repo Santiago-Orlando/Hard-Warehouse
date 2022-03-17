@@ -17,16 +17,12 @@ function AllProducts() {
   
 
 
- /*  console.log("SINGLE PRODUCT", product); */
-
-  /* console.log(location, "LOCATE"); */
-
   useEffect(() => {
     if (location.pathname === `/productos`) dispatch(getProducts());
     else dispatch(getCategoryProducts(category));
   }, [location]);
 
-  /* console.log(products, "SOY ALL PRODUCTS"); */
+ 
 
   return (
     <div className="marginContainer">
@@ -37,7 +33,7 @@ function AllProducts() {
             : allProducts
           ).map((product) => (
             <Grid item xs={3}>
-              <Link to={`/producto/${product._id}`}>
+              <Link to={`/producto/${product._id}`} style={{ textDecoration: 'none' }}>
                 <CardProduct
                   image={product.image}
                   title={product.title}

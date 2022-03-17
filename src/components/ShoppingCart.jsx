@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
-import { Link } from "react-router-dom";
 import { useNavigate } from "react-router";
 
 import {
@@ -19,53 +18,27 @@ import {
   ShoppingCartOutlined,
 } from "@mui/icons-material";
 import { useDispatch, useSelector } from "react-redux";
-import { getCategoryProducts } from "../store/products";
-import { persistUser, removeFromCart, increaseCart } from "../store/user";
-import axios from "axios";
+import { removeFromCart, increaseDecreaseCart } from "../store/user";
 
 function ShoppingCart() {
-  const productos = useSelector((state) => state.products);
   const cart = useSelector((state) => state.user.data.data.carrito);
   const user = useSelector((state) => state.user);
-
-  console.log("CARRITO", cart);
+  
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const addition = (acc, currentvalue) => {
-    return acc + currentvalue.price * currentvalue.quantity;
+    return acc + currentvalue.price * currentvalue.cantidad;
   };
-  //const total = cart.reduce(addition, 0);
-
-  const [unidadCarrito, setUnidadCarrito] = useState(1);
-
-  const addToUnitShoppingCart = (/*posicion*/ event) => {
-    event.preventDefault();
-    setUnidadCarrito(unidadCarrito + 1);
-    // productos[posicion].cantidad ++
-  };
-  const removeToUnitShoppingCart = (event) => {
-    event.preventDefault();
-    if (unidadCarrito <= 1) return alert("no se pueden extraer mas ");
-    setUnidadCarrito(unidadCarrito - 1);
-  };
+  const total = cart.reduce(addition, 0);
 
   const removeFormCart = (productId) => {
-    console.log("ME EJECUTE", productId);
-
-    //  axios({
-    //     method: 'DELETE',
-    //     withCredentials: true,
-    //     url: `http://localhost:3001/cart/remove/${user.data.data._id}/${productId}`
-    // })
-
     dispatch(removeFromCart({ id: user.data.data._id, productId: productId }));
   };
   return (
     <>
-      {user.data.data ? (
-        <>
+      
           <Grid
             container
             sx={{ margin: "80px 0px", alignItems: "center", color: "#13ffd5" }}
@@ -181,12 +154,20 @@ function ShoppingCart() {
                             {" "}
                             <IconButton edge="end" aria-label="delete">
                               <RemoveRounded
-                                onClick={() =>
-                                  dispatch({
-                                    type: "DECREASE",
-                                    payload: producto,
-                                  })
-                                }
+                                onClick={() => {
+                                  let cantidad = producto.cantidad - 1;
+                                  if (cantidad === 0) {
+                                    removeFormCart(producto.product);
+                                  } else if (cantidad >= 1) {
+                                    dispatch(
+                                      increaseDecreaseCart({
+                                        id: user.data.data._id,
+                                        productId: producto.product,
+                                        cantidad,
+                                      })
+                                    );
+                                  }
+                                }}
                               />
                             </IconButton>
                           </Grid>
@@ -203,9 +184,9 @@ function ShoppingCart() {
                                 onClick={() => {
                                   let cantidad = producto.cantidad + 1;
                                   dispatch(
-                                    increaseCart({
+                                    increaseDecreaseCart({
                                       id: user.data.data._id,
-                                      productId: producto._id,
+                                      productId: producto.product,
                                       cantidad,
                                     })
                                   );
@@ -222,7 +203,7 @@ function ShoppingCart() {
                         <IconButton edge="end" aria-label="delete">
                           <DeleteForeverRounded
                             onClick={() => {
-                              removeFormCart(producto._id);
+                              removeFormCart(producto.product);
                             }}
                           />
                         </IconButton>
@@ -236,7 +217,7 @@ function ShoppingCart() {
                 container
                 sx={{ margin: "30px 30px", justifyContent: "center" }}
               >
-                {!productos.data[0] ? (
+                {cart.length === 0 ? (
                   <>
                     <Grid item xs={6} sx={{ textAlign: "rigth" }}>
                       <Typography variant="h5" component="span" gutterBottom>
@@ -280,7 +261,7 @@ function ShoppingCart() {
                       <Divider />
 
                       <Typography variant="h5" component="span" gutterBottom>
-                        $ 2000
+                        $ {total}
                       </Typography>
                     </Grid>
                     <Grid item xs={12}>
@@ -305,10 +286,7 @@ function ShoppingCart() {
               </Grid>
             </Grid>
           </Container>
-        </>
-      ) : (
-        navigate("/login")
-      )}
+        
     </>
   );
 }

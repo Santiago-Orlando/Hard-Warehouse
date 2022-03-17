@@ -67,7 +67,7 @@ export const removeCartService = async ({id, productId}) => {
 
 
 }
-export const increaseCartService = async ({id, productId, cantidad }) => {
+export const increaseDecreaseCartService = async ({id, productId, cantidad }) => {
 
   const cart = await axios ({
     method: 'POST',
@@ -78,5 +78,20 @@ export const increaseCartService = async ({id, productId, cantidad }) => {
 
   return cart
 }
+
+/* export const decreaseCartService = async ({id, productId, cantidad}) => {
+
+  const cart = await axios ({
+    method: 'POST',
+    data: { productId, cantidad },
+    withCredentials: true,
+    url: `http://localhost:3001/cart/modify/${id}`
+  })
+
+  return cart
+} */
+
+
+
   
 

@@ -28,6 +28,8 @@ function App() {
         <Route path="/producto/:id" element={<Product />} />
         <Route path="/carrito" element={<ShoppingCart />} />
         <Route path="/search" element={<AllProducts/>} />
+
+        
         <Route path="/admin" element={<Admin />} />
 
       </Routes>
