@@ -77,6 +77,17 @@ export const increaseDecreaseCartService = async ({id, productId, cantidad }) =>
   return cart
 }
 
+export const buyCartService = async ({id}) => {
+
+  const cart = await axios ({
+    method: 'PUT',
+    data: { id },
+    withCredentials: true,
+    url: `http://localhost:3001/cart/buy/${id}`
+  })
+
+  return cart
+}
 
 
 
