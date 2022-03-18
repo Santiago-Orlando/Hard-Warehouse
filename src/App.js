@@ -11,6 +11,7 @@ import { persistUser } from "./store/user";
 import { useDispatch } from "react-redux";
 import Admin from "./components/Admin"
 import Checkout from "./components/Checkout"
+import Footer from "./components/Footer"
 
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
         <Route path="/admin/administrador" element={<Admin />} />
 
       </Routes>
+      <Footer />
 
       
     </div>

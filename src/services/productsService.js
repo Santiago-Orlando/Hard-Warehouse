@@ -1,12 +1,13 @@
 import axios from "axios"
 
-export const allProductsService = async () => {
+export const allProductsService = async (page) => {
+  
   const allProducts = await axios({
     method: "GET",
     withCredentials: true,
-    url: 'http://localhost:3001/products/showProducts'
+    url: `http://localhost:3001/products/showProducts?page=${page}`
   })
-  return allProducts.data.docs
+  return allProducts.data
 }
 
 export const singleProductService = async id => {
@@ -24,7 +25,7 @@ export const categoriesProductService = async category => {
     withCredentials:true,
     url: `http://localhost:3001/products/showCategoryProducts?category=${category}`
   })
-  return categoryProducts.data.docs
+  return categoryProducts.data
 }
 
 export const postProductService = async (product) => {
