@@ -77,7 +77,7 @@ const Navbar = () => {
               </Link>
             )}
             {user.data ? (
-              <h3>{user.data.fullName}</h3>
+              <Link className="historyLink" to='/miHistorial'>{user.data.fullName}</Link>
             ) : (
               <Link className="log_reg" to="registro">
                 Sign Up

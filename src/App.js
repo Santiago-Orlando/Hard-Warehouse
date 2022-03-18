@@ -12,6 +12,8 @@ import { useDispatch } from "react-redux";
 import Admin from "./components/Admin"
 import Checkout from "./components/Checkout"
 import Footer from "./components/Footer"
+import NotFound from "./components/NotFound"
+import History from "./components/History"
 
 
 function App() {
@@ -32,8 +34,12 @@ function App() {
 
         <Route path="/search" element={<AllProducts/>} />
 
+        <Route path='/miHistorial' element={<History />} />
+
         
         <Route path="/admin/administrador" element={<Admin />} />
+
+        <Route path='/*' element={<NotFound />}/>
 
       </Routes>
       <Footer />
