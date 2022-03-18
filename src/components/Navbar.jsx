@@ -56,6 +56,13 @@ const Navbar = () => {
             </Link>
           </div>
           <div className="cartNavContainer">
+          {user.data && user.data.admin ? (
+              <Link className="log_reg" to="/admin/administrador">
+              Panel Administrador
+            </Link>
+            ) : <></>}
+          </div>
+          <div className="cartNavContainer">
             <BiSearchAlt2 className="searchIcon" />
             <form onSubmit={handleSearch}>
               <input {...search} type="text" />
