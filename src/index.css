@@ -22,7 +22,8 @@ nav {
 h1 {
   text-align: center;
   color: white;
-  margin-top: 200px;
+  margin-top: 40px;
+  margin-bottom: 40px;
 }
 
 .categorias {
@@ -335,5 +336,20 @@ footer {
 }
 
 .titulosModulosHome{
+  color: #13ffd5;
+}
+
+.notFound{
+  width: 100%;
+}
+
+.historyLink{
+  text-decoration: none;
+  color: rgb(209, 209, 209) ;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.historyLink:hover{
   color: #13ffd5;
 }
