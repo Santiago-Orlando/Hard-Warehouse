@@ -10,6 +10,8 @@ import  ShoppingCart  from "./components/ShoppingCart"
 import Admin from "./components/Admin"
 import Checkout from "./components/Checkout"
 import Footer from "./components/Footer"
+import NotFound from "./components/NotFound"
+import History from "./components/History"
 
 function App() {
 
@@ -26,10 +28,12 @@ function App() {
         <Route path="/producto/:id" element={<Product />} />
         <Route path="/carrito" element={<ShoppingCart />} />
         <Route path="/carrito/checkout" element={<Checkout />} />
-
-        <Route path="/search" element={<AllProducts/>} />      
         <Route path="/admin/administrador" element={<Admin />} />
         <Route path="/admin/administrador/edit" element={<Admin />} />
+        <Route path="/search" element={<AllProducts/>} />
+        <Route path='/miHistorial' element={<History />} />
+        <Route path='/*' element={<NotFound />}/>
+
       </Routes>
       <Footer />
 
