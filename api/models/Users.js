@@ -16,12 +16,16 @@ const CarritoItem = new Schema({
   },
   price: {
     type: Number,
-    required: true
+    required: true,
   },
   title: {
     type: String,
-    requires: true
-  }
+    requires: true,
+  },
+  pending: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 const CarritoItemModel = model('Carrito', CarritoItem);
@@ -47,8 +51,8 @@ const UserSchema = new Schema({
     default: [],
   },
   history: {
-    type : [[]],
-    default : []
+    type: [[]],
+    default: [],
   },
   admin: {
     type: Boolean,
