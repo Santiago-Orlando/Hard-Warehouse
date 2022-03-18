@@ -1,41 +1,39 @@
 import { TextareaAutosize } from "@mui/material"
 import { useDispatch, useSelector } from "react-redux"
+import { useNavigate } from "react-router"
 
 import { editOneProduct } from "../store/products"
-import tagFunction from "../utils/tagsFunction"
 
 import useInputEdit from "../hooks/useInputEdit"
+import { Link } from "react-router-dom"
 
 const EditProductForm = () => {
   const editProduct = useSelector(state => state.products.singleProduct)
-  const author = useSelector(state => state.user.data.data)
   const title = useInputEdit(editProduct.title)
   const category = useInputEdit(editProduct.category)
   const details = useInputEdit(editProduct.details)
   const image = useInputEdit(editProduct.image)
   const price = useInputEdit(editProduct.price)
   const stock = useInputEdit(editProduct.stock)
-  const tag1 = useInputEdit(editProduct.tags)
 
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault()
-    const tags = tagFunction(tag1.value)
 
-    dispatch(
+    await dispatch(
         editOneProduct({
         id: editProduct._id,
         title: title.value,
-        author: author.fullName,
         category: category.value,
         stock: parseInt(stock.value),
         price: parseInt(price.value),
         image: image.value,
         details: details.value,
-        tags,
       })
     )
+      navigate("/admin/administrador")
   }
 
   return (
@@ -94,18 +92,17 @@ const EditProductForm = () => {
             placeholder="Stock"
           />
 
-          <input
-            className="logInputs"
-            {...tag1}
-            type="text"
-            placeholder="Tags (sin espacios separados por comas)"
-          />
-
           <button className="logBtn" type="submit">
             EDITAR
           </button>
 
           <div></div>
+          <Link to="/admin/administrador">
+          <button className="logBtn">
+            CANCELAR
+          </button>
+          </Link>
+          
         </form>
       </div>
     </>

@@ -61,6 +61,7 @@ const productsSlice = createSlice({
       state.error = action.error.message
     },
     [getSingleProduct.pending]: state => {
+      state.singleProduct = {}
       state.loading = true
     },
     [getSingleProduct.fulfilled]: (state, action) => {
