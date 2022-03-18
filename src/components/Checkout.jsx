@@ -13,11 +13,15 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from 'react-router';
 import { editOneProduct, getSingleProduct } from '../store/products';
+import { alertCheckout } from '../utils/alerts';
+import { buyCart } from "../store/user";
+
+
 
 
 function Checkout() {
     const dispatch = useDispatch()
-    const navigate = useNavigate
+    const navigate = useNavigate()
     const cart = useSelector((state) => state.user.data.data.carrito);
     const user = useSelector((state) => state.user.data.data);
     const productoSingular = useSelector((state) => state.products.singleProduct)
@@ -41,8 +45,16 @@ function Checkout() {
             dispatch(editOneProduct({
                 id: idProducto,
                 stock: parseInt(nuevoStock)
-            }))
+            }))    
         })
+
+        alertCheckout()
+
+
+        navigate("/carrito")
+
+        dispatch(buyCart({id:user._id}))
+
     }
 
     return (
@@ -214,7 +226,7 @@ function Checkout() {
                 </Grid>
                 <Grid item xs={2}>
                     <Button
-                        onClick={() => {comprarHandle()}}
+                        onClick={() => {comprarHandle() }}
                         variant="contained"
                         size="large"
                         sx={{
