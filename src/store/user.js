@@ -25,7 +25,6 @@ export const increaseDecreaseCart = createAsyncThunk("INCREASE_DECREASE_USER_CAR
 export const buyCart = createAsyncThunk("BUY_CART", usersService.buyCartService)
 
 
-
 const userSlice = createSlice({
   name: "user",
   initialState: userInitialState,

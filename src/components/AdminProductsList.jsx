@@ -1,21 +1,25 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
+import { useNavigate, useLocation } from "react-router"
 
 import { Avatar, Container, Grid, IconButton, Typography } from "@mui/material"
-import { DeleteForeverRounded, EditRounded } from "@mui/icons-material"
+import { DeleteForeverRounded, EditRounded, EditOffSharp } from "@mui/icons-material"
 
 import { getProducts, getSingleProduct, deleteProduct } from "../store/products"
 
 const AdminProductsList = () => {
   const products = useSelector(state => state.products.data)
   const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const location = useLocation()
 
   useEffect(() => {
     dispatch(getProducts())
   }, [])
 
-  const handleClickEdit = (productId) => {
-    dispatch(getSingleProduct(productId))
+  const handleClickEdit = async (productId) => {
+    await dispatch(getSingleProduct(productId))
+    navigate("/admin/administrador/edit")
   }
 
   return (
@@ -136,7 +140,8 @@ const AdminProductsList = () => {
 
                   <Grid item xs={2}>
                     <IconButton edge="end" aria-label="edit">
-                      <EditRounded onClick={() => {handleClickEdit(product._id)}} />
+                    {location.pathname === "/admin/administrador" ?
+                      <EditRounded onClick={() => {handleClickEdit(product._id)}} /> : <EditOffSharp />}
                     </IconButton>
                   </Grid>
 
@@ -150,8 +155,10 @@ const AdminProductsList = () => {
                     </IconButton>
                   </Grid>
                 </Grid>
+
               </>
             ))}
+
           </Grid>
         </Grid>
       </Container>
