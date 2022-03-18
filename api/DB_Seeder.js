@@ -14,7 +14,8 @@ const connection = async () => {
 
 [{
     title: "Ryzen 5 5600x",
-    category:     stock: 10,
+    category: "componente",
+    stock: 10,
     price: 228,
     details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
     image: "https://cdna.pcpartpicker.com/static/forever/images/product/3ef757133d38ac40afe75da691ba7d60.256p.jpg",
@@ -22,7 +23,8 @@ const connection = async () => {
 },
 {
     title: "Ryzen 7 5800x",
-    category:     stock: 10,
+    category: "componente",
+    stock: 10,
     price: 345,
     details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
     image: "https://cdna.pcpartpicker.com/static/forever/images/product/9b4cefb2e43f2c358f3a97a31e1be90b.256p.jpg",
@@ -30,7 +32,8 @@ const connection = async () => {
 },
 {
     title: "Core i5-12600k",
-    category:     stock: 10,
+    category: "componente",
+    stock: 10,
     price: 279,
     details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
     image: "https://cdna.pcpartpicker.com/static/forever/images/product/3f727799b9fc5e83f0e8953759946bd2.256p.jpg",
@@ -38,7 +41,8 @@ const connection = async () => {
 },
 {
     title: "Core i7-12700k",
-    category:     stock: 10,
+    category: "componente",
+    stock: 10,
     price: 380,
     details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
     image: "https://cdna.pcpartpicker.com/static/forever/images/product/3f7037db801def4db8418df8e7498e6a.256p.jpg",
@@ -46,7 +50,8 @@ const connection = async () => {
 },
 {
     title: "Ryzen 9 5950x",
-    category:     stock: 10,
+    category: "componente",
+    stock: 10,
     price: 590,
     details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
     image: "https://cdna.pcpartpicker.com/static/forever/images/product/1d7073a2deda3bd22963a7e248bbe3e4.256p.jpg",
@@ -54,7 +59,8 @@ const connection = async () => {
 },
 {
     title: "Core i9-12900k",
-    category:     stock: 10,
+    category: "componente",
+    stock: 10,
     price: 228,
     details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
     image: "https://cdna.pcpartpicker.com/static/forever/images/product/b9d3c68bbf713cdd1211f3792040ce95.256p.jpg",
@@ -62,7 +68,8 @@ const connection = async () => {
 },
 {
     title: "Ryzen 7 3700x",
-    category:     stock: 10,
+    category: "componente",
+    stock: 10,
     price: 349,
     details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
     image: "https://cdna.pcpartpicker.com/static/forever/images/product/9b4cefb2e43f2c358f3a97a31e1be90b.256p.jpg",
@@ -70,7 +77,8 @@ const connection = async () => {
 },
 {
     title: "Ryzen 5 3600x",
-    category:     stock: 10,
+    category: "componente",
+    stock: 10,
     price: 366,
     details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
     image: "https://cdna.pcpartpicker.com/static/forever/images/product/3ef757133d38ac40afe75da691ba7d60.256p.jpg",
@@ -78,7 +86,8 @@ const connection = async () => {
 },
 {
     title: "Threadripper 3990x",
-    category:     stock: 10,
+    category: "componente",
+    stock: 10,
     price: 8365,
     details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
     image: "https://cdna.pcpartpicker.com/static/forever/images/product/7e2e7fecadc261c89c70cf3965a97a28.256p.jpg",
@@ -86,7 +95,8 @@ const connection = async () => {
 },
 {
     title: "Core i5-10400",
-    category:     stock: 10,
+    category: "componente",
+    stock: 10,
     price: 145,
     details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
     image: "https://cdna.pcpartpicker.com/static/forever/images/product/c18ee131d4d211b2ad40882e5b997371.256p.jpg",
@@ -94,7 +104,8 @@ const connection = async () => {
 },
 {
     title: "EVGA XC GAMING",
-    category:     stock: 10,
+    category: "componente",
+    stock: 10,
     price: 717,
     details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
     image: "https://m.media-amazon.com/images/I/51ufTnVhMeL.jpg",
@@ -102,7 +113,8 @@ const connection = async () => {
 },
 {
     title: "EVGA FTW3 ULTRA GAMING",
-    category:     stock: 10,
+    category: "componente",
+    stock: 10,
     price: 960,
     details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
     image: "https://m.media-amazon.com/images/I/41wNSzchLVS.jpg",
@@ -110,7 +122,8 @@ const connection = async () => {
 },
 {
     title: "Asus DUAL EVO OC",
-    category:     stock: 10,
+    category: "componente",
+    stock: 10,
     price: 484,
     details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
     image: "https://m.media-amazon.com/images/I/51FcVHzQHZL.jpg",
@@ -118,7 +131,8 @@ const connection = async () => {
 },
 {
     title: "EVGA FTW3 ULTRA GAMING",
-    category:     stock: 10,
+    category: "componente",
+    stock: 10,
     price: 2355,
     details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
     image: "https://cdna.pcpartpicker.com/static/forever/images/product/2f11da299c23e66859a6955b07835ff6.256p.jpg",
@@ -126,7 +140,8 @@ const connection = async () => {
 },
 {
     title: "MSI GTX 1050 Ti 4GT OC",
-    category:     stock: 10,
+    category: "componente",
+    stock: 10,
     price: 215,
     details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
     image: "https://cdna.pcpartpicker.com/static/forever/images/product/1085f0f0294e6eb6340c70bf6324a9f8.256p.jpg",
@@ -134,7 +149,8 @@ const connection = async () => {
 },
 {
     title: "EVGA FTW3 ULTRA GAMING LE iCX3",
-    category:     stock: 10,
+    category: "componente",
+    stock: 10,
     price: 1629,
     details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
     image: "https://m.media-amazon.com/images/I/41CPjBchLUS.jpg",
@@ -142,7 +158,8 @@ const connection = async () => {
 },
 {
     title: "MSI GAMING X TRIO",
-    category:     stock: 10,
+    category: "componente",
+    stock: 10,
     price: 1260,
     details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
     image: "https://m.media-amazon.com/images/I/41qWD59dkcS.jpg",
@@ -150,7 +167,8 @@ const connection = async () => {
 },
 {
     title: "Gigabyte AORUS MASTER",
-    category:     stock: 10,
+    category: "componente",
+    stock: 10,
     price: 1260,
     details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
     image: "https://cdna.pcpartpicker.com/static/forever/images/product/36b9edfff520818730e65f88b054a2df.256p.jpg",
@@ -158,7 +176,8 @@ const connection = async () => {
 },
 {
     title: "MSI MECH 2X OC",
-    category:     stock: 10,
+    category: "componente",
+    stock: 10,
     price: 830,
     details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
     image: "https://cdna.pcpartpicker.com/static/forever/images/product/e8016f882d63f9ec9ee0bcb8a84c44a7.256p.jpg",
@@ -166,7 +185,8 @@ const connection = async () => {
 },
 {
     title: "TITAN RTX",
-    category:     stock: 10,
+    category: "componente",
+    stock: 10,
     price: 3979,
     details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
     image: "https://m.media-amazon.com/images/I/51ufTnVhMeL.jpg",
