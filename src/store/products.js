@@ -7,6 +7,7 @@ const productsInitialState = {
   error: "",
   singleProduct: {},
   sales: [],
+  pages: null,
   search: []
 }
 
@@ -51,7 +52,8 @@ const productsSlice = createSlice({
       state.loading = true
     },
     [getProducts.fulfilled]: (state, action) => {
-      state.data = [...action.payload]
+      state.data = action.payload.docs
+      state.pages = action.payload.totalPages
       state.loading = false
     },
     [getProducts.rejected]: (state, action) => {
@@ -74,7 +76,8 @@ const productsSlice = createSlice({
       state.loading = true
     },
     [getCategoryProducts.fulfilled]: (state, action) => {
-      state.data = action.payload
+      state.data = action.payload.docs
+      state.pages = action.payload.totalPages
       state.loading = false
     },
     [getCategoryProducts.rejected]: (state, action) => {

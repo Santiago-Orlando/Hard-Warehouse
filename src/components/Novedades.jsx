@@ -4,15 +4,14 @@ import { Link } from "react-router-dom"
 import { Container, Grid, Typography } from "@mui/material"
 import { getProducts } from "../store/products"
 
-import CardProduct from "./CardProduct"
+import CardProduct from "../commons/CardProduct"
 import Carousel from 'react-elastic-carousel'
 
 
 const Novedades = () => {
   const breakPoints = [
     {width: 500, itemsToShow: 1},
-    {width: 700, itemsToShow: 3},
-    {width: 868, itemsToShow: 4},
+     {width: 868, itemsToShow: 3},
   
   ]
 
@@ -28,16 +27,16 @@ const Novedades = () => {
   return (
     <>
       <div className="marginContainer">
-        <Container>
+        <Container >
           <Typography
             variant="subtitle1"
             sx={{ mx: "auto", width: 200, marginBottom: "25px", textAlign: 'center' }}
             >
-            <p className="letrasBlancas">NOVEDADES</p>
+            <p className="titulosModulosHome">NOVEDADES</p>
           </Typography>
 
           <Grid container spacing={0}>
-            <Carousel breakPoints = {breakPoints}>
+            <Carousel breakPoints = {breakPoints} itemsToScroll={3}>
   
   
             {novedades.map(product => (

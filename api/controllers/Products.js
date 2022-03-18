@@ -9,11 +9,10 @@ class ProductsController {
   }
 
   static async getProducts(req, res) {
-    const { page, category } = req.query || 1;
+    const { page } = req.query || 1;
     const { error, response } = await ProductsServices.getProducts(
       page,
       req.body
-      
     );
 
     if (error) return res.status(400).send(response);
